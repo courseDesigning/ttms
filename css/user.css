@@ -9,3 +9,28 @@
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
 }
+
+#waring{
+    color:red;
+}
+
+.searchUser{
+    display: inline;
+}
+
+.search{
+    width: 200px;
+    display: inline;
+}
+
+
+.addUserStyle{
+    width: 500px;
+    margin:0 auto;;
+}
+
+.editUser{
+    width: 500px;
+    text-align: center;
+    margin:0 auto;
+}
