@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*css reset start*/
+
+ul, li {
+    list-style: none;
+}
+
+/*css reset end*/
+
+/*github展示统一样式start*/
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/*css public start*/
+.floatfix {
+    *zoom: 1;
+}
+.floatfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*css public end*/
+
+/*slider start*/
+.slider-contaner {
+    width: 100%;
+    position: relative;
+}
+.slider-item + .slider-item {
+    opacity: 0;
+}
+.slider-item {
+    width: 100%;
+    position: absolute;
+    animation-timing-function: linear;
+    animation-name: fade;
+    animation-iteration-count: infinite;
+    background-size: 100%;
+}
+.focus-container {
+    position: absolute;
+    z-index: 7;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+.focus-container li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+    background: #fff;
+}
+.focus-item {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    animation-timing-function: linear;
+    animation-name: fade;
+    animation-iteration-count: infinite;
+}
+.focus-item2, .focus-item3, .focus-item4, .focus-item5 {
+    opacity: 0;
+}
+.focus-container ul {
+    margin-left: 46%;
+}
+
+/*设置轮播焦点的位置*/
+.focus-container {
+    bottom: 2%;
+}
+
+/*设置当前图片焦点的颜色*/
+.focus-item {
+    background: #51B1D9;
+}
+
+/*设置动画，请根据实际需要修改秒数*/
+.slider-item, .focus-item {
+    animation-duration: 20s;
+}
+.slider-item1, .focus-item1 {
+    animation-delay: -1s;
+}
+.slider-item2, .focus-item2 {
+    animation-delay: 3s;
+}
+.slider-item3, .focus-item3 {
+    animation-delay: 7s;
+}
+.slider-item4, .focus-item4 {
+    animation-delay: 11s;
+}
+.slider-item5, .focus-item5 {
+    animation-delay: 15s;
+}
+@keyframes fade {
+    0% {
+        opacity: 0;
+        z-index: 2;
+    }
+    5% {
+        opacity: 1;
+        z-index: 1;
+    }
+    20% {
+        opacity: 1;
+        z-index: 1;
+    }
+    25% {
+        opacity: 0;
+        z-index: 0;
+    }
+    100% {
+        opacity: 0;
+        z-index: 0;
+    }
+}
+
+/*设置背景，响应式请利用媒体查询根据断点修改路径*/
+.slider-item1 {
+    background-image: url(../images/login1.jpg);
+}
+.slider-item2 {
+    background-image:url(http://yanxuan.nosdn.127.net/6c20940c7b36612b0ed4d7b0a8a4aafe.jpg);
+}
+.slider-item3 {
+    background-image: url(../images/7.jpg);
+}
+.slider-item4 {
+    background-image: url(../images/7.jpg);
+}
+.slider-item5 {
+    background-image: url(../images/5.jpg);
+}
+
+/*设置图片的高度，请根据具体需要修改百分比，响应式及时修改此值*/
+.slider, .slider-item {
+    padding-bottom: 30%;
+}
+
+.font{
+    color:black;
+    font-size: 20px;
+}
+
+.nav-tabs {
+    border-bottom: 2px solid #DDD;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    border-width: 0;
+}
+
+
+.nav-tabs > li > a {
+    border: none;
+    color: #666;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
+    border: none;
+    color: #4285F4 !important;
+    background: transparent;
+}
+
+.nav-tabs > li > a::after {
+    content: "";
+    background: #4285F4;
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: -1px;
+    transition: all 250ms ease 0s;
+    transform: scale(0);
+}
+
+.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after {
+    transform: scale(1);
+}
+
+.tab-nav > li > a::after {
+    background: #21527d none repeat scroll 0% 0%;
+    color: #fff;
+}
+
+.tab-pane {
+    padding: 15px 0;
+}
+
+.tab-content {
+    padding: 20px
+}
+
+.card {
+    background: #FFF none repeat scroll 0% 0%;
+    /*box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);*/
+    margin-bottom: 30px;
+    width: 1100px;
+    height: 500px;
+}
+.nav-tabs > li {
+    margin-left: 130px;
+}
+
+/*影院名称开始*/
+.logo h1{
+    width:100%;
+    height:90px;
+    color: #b4a078;
+    font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
+    font-size: 400%;
+    text-align: center;
+}
+
+.textStyle{
+    margin-top: 50px;
+}
+
+.navbar-brand{
+    font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
+}
+
+a:hover{
+    color:#b4a078;
+}
+/*
+影院名称结束
+*/
+
+/*标签页开始*/
+.tag{
+    margin-top: 30px;
+}
