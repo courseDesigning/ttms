@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+<script type="text/javascript">
+    var userInf;
+    window.onload = function () {
+
+        $.ajax({
+            url: "http://123.206.67.174:18000/user/queryUser",
+            type: "GET",
+            datatype: 'jsonp',
+            data: {},
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            success: function (data) {
+                console.log("user: ", data);
+                userInf = data
+                var tb = document.getElementById("mytable");
+                for (var i = 0; i < data.Detail.length; i++) {
+                    var tr = tb.insertRow();
+                    tr.onclick = getAll;
+                    tr.setAttribute("id", i);
+                    var td1 = tr.insertCell(0);
+                    var td2 = tr.insertCell(1);
+                    var td3 = tr.insertCell(2);
+                    var td4 = tr.insertCell(3);
+                    var td5 = tr.insertCell(4);
+                    var td6 = tr.insertCell(5);
+                    td1.innerText = data.Detail[i].emp_id;
+                    td2.innerText = data.Detail[i].emp_name;
+                    td3.innerText = data.Detail[i].emp_addr;
+                    td4.innerText = data.Detail[i].emp_email;
+                    td5.innerText = data.Detail[i].emp_tel_num;
+                    td6.innerHTML = '<td class="text-center"><a class="btn btn-info btn-xs" href="#">' +
+                            '<span class="glyphicon glyphicon-edit"></span> Edit</a> ' +
+                            '<a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a>'
+                }
+            }
+        })
+    }
+
+    function getAll(obj) {
+        $("tr").click(function () {
+            var id = $(this).attr("id");
+            console.log(userInf.Detail[id]);
+        });
+    }
+
+</script>
+<body>
+
+<nav class="navStyle">
+    <div class="">
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="#">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand" href="./login.html">登陆</a>
+    </div>
+</nav>
+
+<div>
+    <div class="container">
+        <div class="row col-md-9 col-md-offset-2 custyle">
+            <table class="table table-hover table-hover custab" id="mytable">
+                <tbody>
+                <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> 添 加 用 户</a>
+                <tr>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th>地址</th>
+                    <th>邮箱</th>
+                    <th>联系方式</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
