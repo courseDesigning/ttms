@@ -1,0 +1,43 @@
+.content{
+
+    background-color: #333333;
+}
+
+.spanType{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+hr{
+    width:80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.spanStyle{
+    width:33.3%;
+    font-size: 18px;
+    line-height: 18px;
+    box-sizing: border-box;
+    padding: 18px 18px 0px 18px;
+    color: white;
+}
+
+.ulStyle li{
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 10px;
+    border-right: 1px solid black;
+    color: white;
+    padding-right: 10px;
+}
+
+.ulStyle{
+    text-align: center;
+
+}
+
+.location{
+    text-align: center;
+    color:white;
+    margin-top: 30px;
+}
