@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<!--<script type="text/javascript">-->
+<!--$.getJSON("http://123.206.67.174:18000/user/login?callback=?", function (result,xhr) {-->
+<!--console.log("cookie11: ", xhr.getResponseHeader("set-cookie"));-->
+<!--});-->
+<!--</script>-->
+
+<script>
+    function login() {
+        var user = document.getElementById("inputUser").value;
+        var pass = document.getElementById("inputPassword").value;
+        var status;
+        $.ajax({
+            url: 'http://123.206.67.174:18000/user/login',
+            type: 'GET',     // 请求类型，常用的有 GET 和 POST
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            data: {
+                username: user,
+                password: pass
+            },
+            success: function (data, status, xhr) { // 接口调用成功回调函数
+                console.log("ddd：", data);
+                status = parseInt(data.Detail.status);
+                if (status === 1 || status === 2) {
+                    window.location.href = './user.html';
+                } else
+                    document.getElementById("warning").innerHTML = "用户名或密码错误"
+            }
+        });
+    }
+</script>
+
+<body>
+
+<!--<div>-->
+<!--用户名：<input type="text" id="user"/>-->
+<!--密码：<input type="text" id="password"/>-->
+<!--<button type="button" onclick=login()>登陆</button>-->
+<!--</div>-->
+
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="text" id="inputUser" class="form-control" placeholder="user" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <div id="remember" class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me <span id="warning"></span>
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="button" onclick=login()>Sign in</button>
+        </form>
+        <a href="#" class="forgot-password">
+            Forgot the password?
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
