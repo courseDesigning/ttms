@@ -10,18 +10,23 @@
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/footer.css">
 </head>
+<script>
+    window.onload = function () {
+        var data = sessionStorage.getItem('user');
+        document.getElementById("user").innerHTML = data
+    }
+</script>
 <body>
 
 <nav class="navStyle">
     <div>
-        <a class="navbar-brand" href="#">首页</a>
-        <a class="navbar-brand" href="#">用户管理</a>
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
         <a class="navbar-brand" href="#">座位管理</a>
-        <a class="navbar-brand" href="#">影厅管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand log" href="#">登录</a>
-        <a class="navbar-brand log" href="#">退出</a>
-
+        <a class="navbar-brand log" id="user" href="./personalCenter.html"></a>
+        <a class="navbar-brand log" href="./login.html">退出</a>
     </div>
 </nav>
 

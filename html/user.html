@@ -13,6 +13,9 @@
     var userInf;
     window.onload = function () {
 
+        var data = sessionStorage.getItem('user');
+        document.getElementById("user").innerHTML = data
+
         $.ajax({
             url: "http://123.206.67.174:18000/user/queryUser",
             type: "GET",
@@ -28,7 +31,6 @@
                 var tb = document.getElementById("mytable");
                 for (var i = 0; i < data.Detail.length; i++) {
                     var tr = tb.insertRow();
-                    tr.onclick = getAll;
                     tr.setAttribute("id", i);
                     var td1 = tr.insertCell(0);
                     var td2 = tr.insertCell(1);
@@ -41,30 +43,31 @@
                     td3.innerText = data.Detail[i].emp_addr;
                     td4.innerText = data.Detail[i].emp_email;
                     td5.innerText = data.Detail[i].emp_tel_num;
-                    td6.innerHTML = '<td class="text-center"><a class="btn btn-info btn-xs" id=' + data.Detail[i].emp_id + '>' +
+                    td6.innerHTML = '<td class="text-center">' +
+                            '<a class="btn btn-info btn-xs" id=' + data.Detail[i].emp_id + ' onclick=editUser()>' +
                             '<span class="glyphicon glyphicon-edit"></span> Edit</a> ' +
-                            '<a href="#" class="btn btn-danger btn-xs" onclick=deleteUser()><span class="glyphicon glyphicon-remove"></span> Del</a>'
+                            '<a href="#" class="btn btn-danger btn-xs" onclick=deleteUser()>' +
+                            '<span class="glyphicon glyphicon-remove"></span> Del</a>'
                 }
             }
         })
-    }
+    };
 
     var id;
     var name;
 
-    function getAll() {
+    function editUser() {
         $("tr").click(function () {
             id = $(this).attr("id");
             console.log("id:", userInf.Detail[id].emp_id);
 
-            name = userInf.Detail[id].emp_name;
+            name = userInf.Detail[id].emp_no;
             console.log("name： ", name);
-
-            var editId = userInf.Detail[id].emp_id.toString();
 
             $("a").attr("href", "editUser.html?emp_id=" + userInf.Detail[id].emp_id);
         });
     }
+
 
     function deleteUser() {
         $.ajax({
@@ -81,7 +84,7 @@
             success: function (data, status, xhr) { // 接口调用成功回调函数
                 console.log("ddd：", data);
                 if (data.Detail.status === 1) {
-//                    window.location.href = './user.html';
+                    window.location.href = './user.html';
                 }
             }
         });
@@ -110,7 +113,7 @@
                         '<td>' + data.Detail[0].emp_id + '</td>' +
                         '<td>' + data.Detail[0].emp_email + '</td> ' +
                         '<td>' + data.Detail.emp_tel_num + ' </td>' +
-                        '<td class="text-center">Action</td> </tr>'
+                        '<td">Action</td> </tr>'
             }
         });
     }
@@ -119,13 +122,14 @@
 <body>
 
 <nav class="navStyle">
-    <div class="">
+    <div>
         <a class="navbar-brand" href="./home.html">首页</a>
         <a class="navbar-brand" href="./user.html">用户管理</a>
         <a class="navbar-brand" href="#">座位管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand" href="./login.html">登陆</a>
+        <a class="navbar-brand log" href="./login.html" id="user">登录</a>
+        <a class="navbar-brand log" href="#">退出</a>
     </div>
 </nav>
 <br>
@@ -137,16 +141,16 @@
                 <tbody>
                 <div class="searchUser">
                     <input type=" text" class="form-control search" id="userId" placeholder="请输入ID查询"/>
-                    <button class="btn btn-primary btn-xs " onclick=searchById()>查询 ID</button>
+                    <button class="btn   buttonStyle " onclick=searchById()>查询 ID</button>
                 </div>
-                <a href="./addUser.html" class="btn btn-primary btn-xs searchUser"><b>+</b> 添 加 用 户</a>
+                <button href="./addUser.html" class="btn   searchUser buttonStyle"><b>+</b> 添 加 用 户</button>
                 <tr>
                     <th>ID</th>
                     <th>姓名</th>
                     <th>地址</th>
                     <th>邮箱</th>
                     <th>联系方式</th>
-                    <th class="text-center">Action</th>
+                    <th>Action</th>
                 </tr>
                 </tbody>
             </table>

@@ -13,7 +13,7 @@
     function addUser() {
         $.ajax({
             url: "http://123.206.67.174:18000/user/register",
-            type: "GET",
+            type: "post",
             datatype: 'jsonp',
             crossDomain: true,
             xhrFields: {
@@ -41,13 +41,14 @@
 <body>
 
 <nav class="navStyle">
-    <div class="">
+    <div>
         <a class="navbar-brand" href="./home.html">首页</a>
         <a class="navbar-brand" href="./user.html">用户管理</a>
         <a class="navbar-brand" href="#">座位管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand" href="./login.html">登陆</a>
+        <a class="navbar-brand log" href="./login.html">登录</a>
+        <a class="navbar-brand log" href="#">退出</a>
     </div>
 </nav>
 
@@ -74,9 +75,8 @@
         <input type="text" id="email" class='form-control'>
     </div>
     <br>
-    <button class="btn  btn-primary btn-block btn-signin" onclick=addUser() >提交</button>
+    <button class="btn  btn-primary btn-block btn-signin" onclick=addUser()>提交</button>
     <span id="waring"></span>
-
 </div>
 
 </body>
