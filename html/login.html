@@ -9,17 +9,13 @@
     <link rel="stylesheet" href="../css/login.css">
 </head>
 
-<!--<script type="text/javascript">-->
-<!--$.getJSON("http://123.206.67.174:18000/user/login?callback=?", function (result,xhr) {-->
-<!--console.log("cookie11: ", xhr.getResponseHeader("set-cookie"));-->
-<!--});-->
-<!--</script>-->
-
 <script>
     function login() {
         var user = document.getElementById("inputUser").value;
         var pass = document.getElementById("inputPassword").value;
-        var status;
+
+        sessionStorage.setItem('user', user);
+
         $.ajax({
             url: 'http://123.206.67.174:18000/user/login',
             type: 'GET',     // 请求类型，常用的有 GET 和 POST
@@ -45,12 +41,6 @@
 </script>
 
 <body>
-
-<!--<div>-->
-<!--用户名：<input type="text" id="user"/>-->
-<!--密码：<input type="text" id="password"/>-->
-<!--<button type="button" onclick=login()>登陆</button>-->
-<!--</div>-->
 
 <div class="container">
     <div class="card card-container">
