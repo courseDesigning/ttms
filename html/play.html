@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>影厅管理</title>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/play.css">
+</head>
+
+<script>
+    window.onload = function () {
+        $('#filmName').focus();
+        $.ajax({
+            url: `http://123.206.67.174:18000/film/querys?film_name`,
+            type: 'get',
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {withCredentials: true},
+            success: function (data) {
+                console.log("play++++", data);
+                for (var i = 0; i < data.Detail.length; i++) {
+                    var displayInfo = document.getElementById("displayInfo");
+                    var nextRow = displayInfo.insertRow();
+                    var obj_id = nextRow.insertCell();
+                    obj_id.innerHTML = data.Detail[i].film_id;
+                    var obj_name = nextRow.insertCell();
+                    obj_name.innerHTML = data.Detail[i].film_name;
+                    var obj_star = nextRow.insertCell();
+                    obj_star.innerHTML = data.Detail[i].film_tostar;
+                    var obj_realse = nextRow.insertCell();
+                    obj_realse.innerHTML = data.Detail[i].film_release;
+                    var obj_hour = nextRow.insertCell();
+                    obj_hour.innerHTML = data.Detail[i].film_hourlong;
+                    var obj_type = nextRow.insertCell();
+                    obj_type.innerHTML = data.Detail[i].film_type;
+                    var obj_price = nextRow.insertCell();
+                    obj_price.innerHTML = data.Detail[i].film_price;
+                    var obj_modify = nextRow.insertCell();
+                    obj_modify.innerHTML = `<input type="button" value="修改" id=${data.Detail[i].film_name}
+                class="infoButton fontColor btn btn-default modifyFilm"  onclick=modifyFilm(this)>`;
+                    var obj_delete = nextRow.insertCell();
+                    obj_delete.innerHTML = `<button type="button" type="button"
+            class="dangerButton fontColor btn btn-default deleteFilm"  id=${data.Detail[i].film_id} onclick=deleteFilm(this)>删除</button>`;
+                }
+            }
+        });
+        document.getElementById("searchPlayByName").addEventListener("click", function () {
+            var filmName = document.getElementById('filmName').value;
+            console.log("filmName", filmName);
+            if (filmName) {
+                window.location.assign(encodeURI(`playInformation.html?Detail=${filmName}`));
+            } else {
+                console.log("dadada");
+                document.getElementById("searchWarning").innerHTML = "影片名称不能为空!"
+            }
+
+        });
+
+        document.getElementById("addFilm").addEventListener("click", function () {
+            window.location.href = 'addPlay.html';
+        });
+    };
+
+    function modifyFilm(object) {
+        var name= $(object).attr("id");
+        window.location.assign(encodeURI(`modifyPlay.html?id=${name}`));
+    }
+
+    function deleteFilm(object) {
+        console.log("deleteFilm");
+        var id = $(object).attr("id");
+        $.ajax({
+            url: `http://123.206.67.174:18000/film/deleteFilm?`,
+            type: 'get',
+            datatype: 'jsonp',
+            data: {
+                film_id: id
+            },
+            crossDomain: true, xhrFields: {withCredentials: true},
+            success: function (data) {
+                if (data.Detail.status) {
+                    document.getElementById("searchWarning").innerHTML = "删除成功！";
+                    window.location.href = `play.html`;
+                } else {
+                    document.getElementById("searchWarning").innerHTML = "删除失败！";
+                }
+            }
+        });
+    }
+</script>
+<body>
+
+<nav class="navStyle">
+    <a class="navbar-brand" href="./home.html">首页</a>
+    <a class="navbar-brand" href="#">用户管理</a>
+    <a class="navbar-brand" href="#">剧目管理</a>
+    <a class="navbar-brand" href="#">影厅管理</a>
+    <a class="navbar-brand" href="#">演出计划管理</a>
+    <a class="navbar-brand log" href="./login.html">登录</a>
+    <a class="navbar-brand log" href="./home.html">退出</a>
+</nav>
+
+<div class="playTheme">
+    <h1 class="textStyle">剧目管理</h1>
+</div>
+<div style="margin-left: 45%" id="searchWarning">
+</div>
+<div class="input-group col-md-4 col-md-offset-4 search">
+    <input type="text" class="form-control inputStyle" placeholder="请输入剧目名称" id="filmName"/>
+    <span class="input-group-btn">
+        <button class="btn btn-default btn-search inputStyle infoButton" id="searchPlayByName" >查找</button>
+         <button class="btn btn-default btn-search inputStyle infoButton" id="addFilm" style="margin-left: 5px">添加</button>
+    </span>
+</div>
+
+<div class="col-md-8 col-md-offset-2">
+    <table class="table table-bordered textStyle" id="displayInfo">
+        <tr class="active">
+            <th class="textStyle">ID</th>
+            <th class="textStyle">片名</th>
+            <th class="textStyle">主演</th>
+            <th class="textStyle">上映日期</th>
+            <th class="textStyle">时长</th>
+            <th class="textStyle">影片类型</th>
+            <th class="textStyle">票价</th>
+            <th class="textStyle" colspan="3">操作</th>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
