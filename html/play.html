@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>影厅管理</title>
-    <link rel="stylesheet" href="../lib/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/play.css">
 </head>
 
 <script>
     window.onload = function () {
+
+        var data = sessionStorage.getItem('user');
+        document.getElementById("user").innerHTML =data;
+        document.getElementById("logout").innerHTML=`您好！`;
+
         $('#filmName').focus();
         $.ajax({
             url: `http://123.206.67.174:18000/film/querys?film_name`,
@@ -95,12 +100,12 @@
 
 <nav class="navStyle">
     <a class="navbar-brand" href="./home.html">首页</a>
-    <a class="navbar-brand" href="#">用户管理</a>
+    <a class="navbar-brand" href="./user.html">用户管理</a>
     <a class="navbar-brand" href="#">剧目管理</a>
-    <a class="navbar-brand" href="#">影厅管理</a>
+    <a class="navbar-brand" href="./studio.html">影厅管理</a>
     <a class="navbar-brand" href="#">演出计划管理</a>
-    <a class="navbar-brand log" href="./login.html">登录</a>
-    <a class="navbar-brand log" href="./home.html">退出</a>
+    <a class="navbar-brand log" href="./login.html" id="user">登录</a>
+    <a class="navbar-brand log" href="./home.html" id="logout">退出</a>
 </nav>
 
 <div class="playTheme">

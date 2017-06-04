@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Studio</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+
+</head>
+
+<script>
+
+    window.onload = function () {
+        $.ajax({
+            url: "http://123.206.67.174:18000/studio/queryStudio",
+            type: "GET",
+            datatype: 'jsonp',
+            data: {},
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            success: function (data) {
+                console.log("studio: ", data);
+            }
+        })
+    }
+
+</script>
+
+<body>
+
+<nav class="navStyle">
+    <div class="">
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand" href="./login.html">登陆</a>
+    </div>
+</nav>
+
+
+</body>
+</html>

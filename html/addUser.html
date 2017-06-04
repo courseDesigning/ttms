@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AddUser</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/nav.css">
+</head>
+<script>
+    function addUser() {
+        $.ajax({
+            url: "http://123.206.67.174:18000/user/register",
+            type: "post",
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            data: {
+                username: document.getElementById("username").value,
+                name: document.getElementById("name").value,
+                tel: document.getElementById("tel").value,
+                address: document.getElementById("address").value,
+                email: document.getElementById("email").value,
+            },
+            success: function (data) {
+                console.log("user: ", data);
+                if (data.Detail.status === 1) {
+                    window.location.href = './user.html';
+                } else {
+                    document.getElementById("waring").innerHTML = "添加失败！"
+                }
+            }
+        })
+    }
+</script>
+
+<body>
+
+<nav class="navStyle">
+    <div>
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand log" href="./login.html">登录</a>
+        <a class="navbar-brand log" href="#">退出</a>
+    </div>
+</nav>
+
+<div class="addUserStyle">
+    <br>
+    <div>
+        <span>用户名：</span>
+        <input type="text" id="username" class='form-control'/>
+    </div>
+    <div>
+        <span>姓名：</span>
+        <input type="text" id="name" class='form-control'>
+    </div>
+    <div>
+        <span>电话：</span>
+        <input type="text" id="tel" class='form-control'>
+    </div>
+    <div>
+        <span>地址:</span>
+        <input type="text" id="address" class='form-control'>
+    </div>
+    <div>
+        <span>邮箱：</span>
+        <input type="text" id="email" class='form-control'>
+    </div>
+    <br>
+    <button class="btn  btn-primary btn-block btn-signin" onclick=addUser()>提交</button>
+    <span id="waring"></span>
+</div>
+
+</body>
+</html>

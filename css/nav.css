@@ -1,24 +1,32 @@
-a:hover{
-    color:#b4a078;
+* {
+    margin: 0;
+    padding: 0;
 }
-.navStyle{
-    width:100%;
-    height:50px;
-    background-color:#333;
-    font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
+
+a:hover {
+    color: #b4a078;
+}
+
+.navStyle {
+    width: 100%;
+    height: 50px;
+    background-color: #333;
+    font-family: "AR PL UKai CN", "Noto Sans CJK JP Bold";
     border-radius: 3%;
 }
 
-.navbar-brand{
-    color:white;
+.navbar-brand {
+    color: white;
     text-decoration: none;
     margin-left: 40px;
 }
-.log{
+
+.navbar-header {
+    padding: 10px 10px;
+}
+
+.log {
     float: right;
     margin-left: 0px;
     margin-right: 20px;
-}
-.navbar-header{
-    padding: 10px 10px;
 }

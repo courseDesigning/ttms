@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EditUser</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/user.css">
+</head>
+<script>
+    window.onload = function () {
+        var emp_id = getQueryString("emp_id");
+        var emp_name, emp_addr, emp_email, emp_tel_num;
+
+        $.ajax({
+            url: 'http://123.206.67.174:18000/user/queryUser',
+            type: 'GET',     // 请求类型，常用的有 GET 和 POST
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            data: {
+                userId: emp_id
+            },
+            success: function (data) { // 接口调用成功回调函数
+                emp_name = data.Detail[0].emp_name;
+                emp_addr = data.Detail[0].emp_addr;
+                emp_email = data.Detail[0].emp_email;
+                emp_tel_num = data.Detail[0].emp_tel_num;
+
+                var userList = "<br><input id='id' type='text' class='form-control' value=" + emp_id + "><br>"
+                        + "<input id='name' type='text' class='form-control' value=" + emp_name + "><br>"
+                        + "<input id='addr' type='text' class='form-control' value=" + emp_addr + "><br>"
+                        + "<input id='email' type='text' class='form-control' value=" + emp_email + "><br>"
+                        + "<input id='telnum' type='text' class='form-control' value=" + emp_tel_num + "><br>"
+
+                document.getElementById("updateUser").innerHTML = userList
+            }
+        });
+    };
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+    function updateUser() {
+        alert(document.getElementById("name").value);
+        $.ajax({
+            url: 'http://123.206.67.174:18000/user/updataUser',
+            type: 'GET',     // 请求类型，常用的有 GET 和 POST
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            data: {
+                emp_id: document.getElementById("id").value,
+                emp_name: document.getElementById("name").value,
+                emp_addr: document.getElementById("addr").value,
+                emp_email: document.getElementById("email").value,
+                emp_tel_num: document.getElementById("telnum").value,
+            },
+            success: function (data) { // 接口调用成功回调函数
+                window.location.href = './user.html'
+            }
+        });
+    }
+
+</script>
+<body>
+
+<nav class="navStyle">
+    <div>
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand log" href="./login.html">登录</a>
+        <a class="navbar-brand log" href="#">退出</a>
+    </div>
+</nav>
+
+
+<div class="editUser">
+    <div id="updateUser"></div>
+    <button class="btn  btn-primary btn-block btn-signin" onclick=updateUser()>修改</button>
+</div>
+
+</body>
+</html>

@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
-    <link rel="stylesheet" href="../lib/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <script>
     function login() {
         var user = document.getElementById("inputUser").value;
         var pass = document.getElementById("inputPassword").value;
-        console.log(user);
-        console.log(pass);
+        sessionStorage.setItem('user', user);
         $.ajax({
             url: 'http://123.206.67.174:18000/user/login',
             type: 'GET',     // 请求类型，常用的有 GET 和 POST
