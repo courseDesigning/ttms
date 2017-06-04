@@ -2,9 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>editStudio</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/studio.css">
 </head>
+<script>
+    window.onload = function () {
+        var id = getQueryString('studio_id');
+        $.ajax({
+            url: "http://123.206.67.174:18000/studio/queryStudio",
+            type: "GET",
+            datatype: 'jsonp',
+            data: {
+                studio_id: id
+            },
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            success: function (data) {
+                console.log("studio: ", data);
+
+                document.getElementById("updateStudio").innerHTML = "<br><span>演出厅</span><input id='id' type='text' class='form-control' value=" + data.Detail[0].studio_id + "><br>"
+                        + "<span>座位行数</span><input id='name' type='text' class='form-control' value=" + data.Detail[0].studio_name + "><br>"
+                        + "<span>座位行数</span><input id='row' type='text' class='form-control' value=" + data.Detail[0].studio_row_count + "><br>"
+                        + "<span>座位列数</span><input id='col' type='text' class='form-control' value=" + data.Detail[0].studio_col_count + "><br>"
+                        + "<span>状态</span><input id='status' type='text' class='form-control' value=" + data.Detail[0].studio_flag + "><br>"
+                        + " <button class='btn  btn-primary btn-block btn-signi' onclick=updateUser()>修改</button><br>"
+            }
+        })
+    };
+
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+    function updateUser() {
+        $.ajax({
+            url: "http://123.206.67.174:18000/studio/updataStudio",
+            type: "GET",
+            datatype: 'jsonp',
+            data: {
+                studio_id: document.getElementById("id").value,
+                studio_name: document.getElementById("name").value,
+                studio_row_count: document.getElementById("row").value,
+                studio_col_count: document.getElementById("col").value,
+                studio_flag: document.getElementById("status").value,
+            },
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            success: function (data) {
+                console.log("updateStudio: ", data);
+                window.location.href = './studio.html'
+            }
+        })
+    }
+
+</script>
 <body>
-$END$
+
+<nav class="navStyle">
+    <div>
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand log" href="./login.html">登录</a>
+        <a class="navbar-brand log" href="#">退出</a>
+    </div>
+</nav>
+
+<div class="addStudioStyle">
+    <div id="updateStudio"></div>
+</div>
+
+
 </body>
 </html>
