@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>home</title>
-    <link rel="stylesheet" href="../lib/bootstrap.min.css">
-    <script src="../lib/jquery-3.1.1.min.js"></script>
-    <script src="../lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -13,24 +13,24 @@
 <script>
     window.onload = function () {
         var data = sessionStorage.getItem('user');
-        document.getElementById("user").innerHTML = data
+        if(data){
+            document.getElementById("user").innerHTML =data;
+            document.getElementById("logout").innerHTML=`您好！`;
+        }
     }
 </script>
 <body>
-
 <nav class="navStyle">
     <div>
-        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="#">首页</a>
         <a class="navbar-brand" href="./user.html">用户管理</a>
-        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand log" id="user" href="./personalCenter.html"></a>
+        <a class="navbar-brand log" id="user" href="../js/personalCenter.html"></a>
         <a class="navbar-brand log" href="./login.html">退出</a>
     </div>
 </nav>
-
-<!--<img src="../images/1.jpg" alt="" width="100%" height="150px">-->
 
 <div class="logo">
     <h1 class="textStyle"> 影院管理系统</h1>

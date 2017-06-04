@@ -14,7 +14,8 @@
     window.onload = function () {
 
         var data = sessionStorage.getItem('user');
-        document.getElementById("user").innerHTML = data
+        document.getElementById("user").innerHTML =data;
+        document.getElementById("logout").innerHTML=`您好！`;
 
         $.ajax({
             url: "http://123.206.67.174:18000/user/queryUser",
@@ -27,7 +28,7 @@
             },
             success: function (data) {
                 console.log("user: ", data);
-                userInf = data
+                userInf = data;
                 var tb = document.getElementById("mytable");
                 for (var i = 0; i < data.Detail.length; i++) {
                     var tr = tb.insertRow();
@@ -118,6 +119,10 @@
         });
     }
 
+    function addUser() {
+        window.location.href="./addUser.html"
+    }
+
 </script>
 <body>
 
@@ -125,11 +130,11 @@
     <div>
         <a class="navbar-brand" href="./home.html">首页</a>
         <a class="navbar-brand" href="./user.html">用户管理</a>
-        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
         <a class="navbar-brand log" href="./login.html" id="user">登录</a>
-        <a class="navbar-brand log" href="#">退出</a>
+        <a class="navbar-brand log" href="./home.html" id="logout">退出</a>
     </div>
 </nav>
 <br>
@@ -143,7 +148,7 @@
                     <input type=" text" class="form-control search" id="userId" placeholder="请输入ID查询"/>
                     <button class="btn   buttonStyle " onclick=searchById()>查询 ID</button>
                 </div>
-                <button href="./addUser.html" class="btn   searchUser buttonStyle"><b>+</b> 添 加 用 户</button>
+                <button class="btn   searchUser buttonStyle" onclick=addUser()><b>+</b> 添 加 用 户</button>
                 <tr>
                     <th>ID</th>
                     <th>姓名</th>

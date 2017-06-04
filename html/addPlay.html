@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加影片</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/play.css">
+</head>
+<script>
+    window.onload=function () {
+        document.getElementById("submit").addEventListener("click",function(){
+            var name = document.getElementById('name').value;
+            var star = document.getElementById('star').value;
+            var release = document.getElementById('release').value;
+            var hourlong = document.getElementById('hourlong').value;
+            var type = document.getElementById('type').value;
+            var price = document.getElementById('price').value;
+            if(name && star && release && hourlong && type && price){
+                $.ajax({
+                    url: `http://123.206.67.174:18000/film/addFilm?`,
+                    type: 'get',
+                    datatype:'jsonp',
+                    data:{
+                        film_name:name,
+                        film_tostar:star,
+                        film_release:release,
+                        film_hourlong:hourlong,
+                        film_type:type,
+                        film_price:price
+                    },
+                    crossDomain: true, xhrFields: {withCredentials: true},
+                    success:function(data) {
+                        console.log("status++++++",data.Detail.status);
+                        if(data.Detail.status === 1){
+                            document.getElementById("addWarning").innerText="添加成功!"
+                        }else{
+                            document.getElementById("addWarning").innerText="重复添加!"
+                        }
+                        window.location.href="play.html";
+                    }
+                })
+            }else{
+                document.getElementById("addWarning").innerText="信息不能为空!"
+            }
+        });
+
+        document.getElementById("goBackToPlay").addEventListener("click",function () {
+            window.location.href="play.html";
+        })
+    }
+
+</script>
+<body>
+<div class="playTheme">
+    <h1 class="textStyle">添加影片</h1>
+</div>
+<div>
+    <div style="margin-left: 45%">
+        <span id="addWarning"></span>
+    </div>
+    <div>
+        <input type="text" placeholder="请输入影片名字" class="form-control  btn btn-default addInput" id="name">
+    </div>
+    <div>
+        <input type="text" placeholder="请输入影片主演" class="form-control  btn btn-default addInput" id="star">
+    </div>
+    <div>
+        <input type="text" placeholder="请输入影片上映时间" class="form-control  btn btn-default addInput" id="release">
+    </div>
+    <div>
+        <input type="text" placeholder="请输入影片时长" class="form-control  btn btn-default addInput" id="hourlong">
+    </div>
+    <div>
+        <input type="text" placeholder="请输入影片类型" class="form-control  btn btn-default addInput" id="type">
+    </div>
+    <div>
+        <input type="text" placeholder="请输入影片价格" class="form-control  btn btn-default addInput" id="price">
+    </div>
+    <div class="addButton">
+        <button type="button"  class="btn btn-default"  style="margin-right: 20px" id="goBackToPlay">返回</button>
+        <button type="button"  class="btn btn-default"  id="submit" >提交</button>
+    </div>
+</div>
+</body>
+</html>

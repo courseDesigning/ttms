@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>影片详细信息</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/play.css">
+    <link rel="stylesheet" href="../css/nav.css">
+</head>
+
+<script>
+    window.onload = function () {
+        var url = decodeURI(location.href);
+        var getVal = url.split('?')[1];
+        var showVal = getVal.split('=')[1];
+        $.ajax({
+            url: `http://123.206.67.174:18000/film/querys?`,
+            type: 'get',
+            datatype: 'jsonp',
+            data:{
+                film_name:showVal
+            },
+            crossDomain: true, xhrFields: {withCredentials: true},
+            success: function (data) {
+                console.log("data", data);
+                var object = data.Detail[0];
+                var container = document.getElementById("information");
+                container.innerHTML = `<div class="col-md-12"><div class="tofloat">影片片名 :<input type="text"  class="form-horizontal  btn btn-default myInput" id="film_name"></div>
+ <div class="tofloat">影片主演：<input type="text"  class="form-horizontal  btn btn-default myInput" id="film_tostar"></div>
+<div class="tofloat">上映日期：<input type="text" class="form-horizontal  btn btn-default myInput" id="film_release"></div>
+<div class="tofloat">放映时长：<input type="text" class="form-horizontal  btn btn-default myInput" id="film_hourlong"></div>
+<div class="tofloat">影片类型：<input type="text" class="form-horizontal  btn btn-default myInput" id="film_type"></div>
+<div class="tofloat">影片票价：<input type="text" class="form-horizontal  btn btn-default myInput" id="film_price"></div>
+<div class="tofloat"><button type="button" class="btn btn-default goback" id="goBack"  onClick=goBack() >返回</button></div>
+</div>`;
+                var film_name = document.getElementById("film_name");
+                console.log(film_name);
+                film_name.value = object.film_name;
+
+                var film_tostar = document.getElementById("film_tostar");
+                film_tostar.value = object.film_tostar;
+
+                var film_release = document.getElementById("film_release");
+                film_release.value = object.film_release;
+
+                var film_hourlong = document.getElementById("film_hourlong");
+                film_hourlong.value = object.film_hourlong;
+
+                var film_type = document.getElementById("film_type");
+                film_type.value = object.film_type;
+
+                var film_price = document.getElementById("film_price");
+                film_price.value = object.film_price;
+
+                var film_image=document.getElementById("imagePosition");
+                film_image.innerHTML=`<img src=${object.film_img} alt="" class="imageSize">`;
+            }
+        });
+    };
+
+    function goBack() {
+        window.location.href = './play.html';
+    }
+</script>
+<body>
+<div class="playTheme">
+    <h1 class="textStyle">剧目管理</h1>
+</div>
+<div>
+    <div class="left col-md-6">
+        <div id="imagePosition" class="img-rounded"></div>
+    </div>
+    <div class="right col-md-6" id="information">
+
+    </div>
+</div>
+
+</body>
+</html>

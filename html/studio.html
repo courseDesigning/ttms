@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="../lib/bootstrap.min.css">
     <script src="../lib/jquery-3.1.1.min.js"></script>
     <script src="../lib/bootstrap.min.js"></script>
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/studio.css">
-
 </head>
 
 <script>
 
     var studioInfo;
     window.onload = function () {
-
         var data = sessionStorage.getItem('user');
         document.getElementById("user").innerHTML = data
 
@@ -63,8 +63,8 @@
 
     function editStudio(a) {
 //        $("tr").click(function () {
-            id = $(a).attr("id");
-            console.log("id:", studioInfo.Detail[id].studio_id);
+        id = $(a).attr("id");
+        console.log("id:", studioInfo.Detail[id].studio_id);
 //        });
 
         $("a").attr("href", "editStudio.html?studio_id=" + studioInfo.Detail[id].studio_id);
@@ -115,6 +115,10 @@
         })
     }
 
+    function addStudio() {
+        window.location.href = "./addStudio.html"
+    }
+
 </script>
 
 <body>
@@ -143,7 +147,7 @@
                     <input type=" text" class="form-control search" id="studioId" placeholder="请输入ID查询"/>
                     <button class="btn btn-primary btn-xs buttonStyle" onclick=searchById()>查询 ID</button>
                 </div>
-                <button href="./addStudio.html" class="btn btn-primary btn-xs searchStudio buttonStyle"><b>+</b> 添 加 用 户
+                <button class="btn btn-primary btn-xs searchStudio buttonStyle" onclick=addStudio()><b>+</b> 添 加 用 户
                 </button>
                 <tr>
                     <th>演出厅ID</th>

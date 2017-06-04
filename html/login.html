@@ -6,16 +6,15 @@
     <link rel="../lib/bootstrap.min.css">
     <script src="../lib/jquery-3.1.1.min.js"></script>
     <script src="../lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 </head>
-
 <script>
     function login() {
         var user = document.getElementById("inputUser").value;
         var pass = document.getElementById("inputPassword").value;
-
         sessionStorage.setItem('user', user);
-
         $.ajax({
             url: 'http://123.206.67.174:18000/user/login',
             type: 'GET',     // 请求类型，常用的有 GET 和 POST
@@ -31,8 +30,9 @@
             success: function (data, status, xhr) { // 接口调用成功回调函数
                 console.log("ddd：", data);
                 status = parseInt(data.Detail.status);
+                console.log("status++++", status);
                 if (status === 1 || status === 2) {
-                    window.location.href = './home.html';
+                    window.location.href = 'home.html';
                 } else
                     document.getElementById("warning").innerHTML = "用户名或密码错误"
             }
