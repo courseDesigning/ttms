@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab151ba3-2132-4003-9a86-b22166ff9a9e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/personStyle.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/personalCenter.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/seat.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/1.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/personalCenter.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/studio.css" afterPath="$PROJECT_DIR$/css/studio.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/user.css" afterPath="$PROJECT_DIR$/css/user.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/home.html" afterPath="$PROJECT_DIR$/html/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/login.html" afterPath="$PROJECT_DIR$/html/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/personalCenter.html" afterPath="$PROJECT_DIR$/html/personalCenter.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/play.html" afterPath="$PROJECT_DIR$/html/play.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/studio.html" afterPath="$PROJECT_DIR$/html/studio.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/user.html" afterPath="$PROJECT_DIR$/html/user.html" />
@@ -40,10 +34,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-361">
+            <state relative-caret-position="216">
               <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
               <folding />
             </state>
@@ -53,11 +47,23 @@
       <file leaf-file-name="play.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/play.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="18" column="66" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="66" />
+            <state relative-caret-position="702">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding>
-                <marker date="1496647152860" expanded="true" signature="2352:2450" ph="..." />
-                <marker date="1496647152860" expanded="true" signature="2592:2728" ph="..." />
+                <marker date="1496652386155" expanded="true" signature="2352:2450" ph="..." />
+                <marker date="1496652386155" expanded="true" signature="2592:2728" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playInformation.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/playInformation.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="16" column="43" selection-start-line="14" selection-start-column="8" selection-end-line="16" selection-end-column="43" />
+              <folding>
+                <marker date="1496557907343" expanded="true" signature="1165:2004" ph="..." />
               </folding>
             </state>
           </provider>
@@ -76,28 +82,8 @@
       <file leaf-file-name="personalCenter.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/personalCenter.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nav.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/nav.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/footer.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1129">
+              <caret line="143" column="45" selection-start-line="143" selection-start-column="45" selection-end-line="143" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -113,11 +99,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="90">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editUser.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/editUser.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" column="97" selection-start-line="7" selection-start-column="97" selection-end-line="7" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -126,8 +122,8 @@
       <file leaf-file-name="studio.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/studio.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="134" column="59" selection-start-line="134" selection-start-column="59" selection-end-line="134" selection-end-column="59" />
+            <state relative-caret-position="216">
+              <caret line="153" column="63" selection-start-line="153" selection-start-column="63" selection-end-line="153" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -136,8 +132,8 @@
       <file leaf-file-name="user.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="137" column="63" selection-start-line="137" selection-start-column="63" selection-end-line="137" selection-end-column="63" />
+            <state relative-caret-position="283">
+              <caret line="154" column="45" selection-start-line="154" selection-start-column="45" selection-end-line="154" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -175,16 +171,16 @@
         <option value="$PROJECT_DIR$/html/playInformation.html" />
         <option value="$PROJECT_DIR$/html/editUser.html" />
         <option value="$PROJECT_DIR$/html/addUser.html" />
-        <option value="$PROJECT_DIR$/html/login.html" />
         <option value="$PROJECT_DIR$/html/addPlay.html" />
         <option value="$PROJECT_DIR$/html/test.html" />
         <option value="$PROJECT_DIR$/html/seat.html" />
         <option value="$PROJECT_DIR$/html/modifyPlay.html" />
-        <option value="$PROJECT_DIR$/html/studio.html" />
-        <option value="$PROJECT_DIR$/html/play.html" />
-        <option value="$PROJECT_DIR$/html/user.html" />
-        <option value="$PROJECT_DIR$/html/personalCenter.html" />
+        <option value="$PROJECT_DIR$/html/login.html" />
         <option value="$PROJECT_DIR$/html/home.html" />
+        <option value="$PROJECT_DIR$/html/play.html" />
+        <option value="$PROJECT_DIR$/html/personalCenter.html" />
+        <option value="$PROJECT_DIR$/html/studio.html" />
+        <option value="$PROJECT_DIR$/html/user.html" />
       </list>
     </option>
   </component>
@@ -303,6 +299,9 @@
     <configuration default="false" name="login.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ttms/html/login.html">
       <method />
     </configuration>
+    <configuration default="false" name="home.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ttms/html/home.html">
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -356,12 +355,14 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.home.html" />
     </list>
     <recent_temporary>
-      <list size="1">
+      <list size="2">
         <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.login.html" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.home.html" />
       </list>
     </recent_temporary>
   </component>
@@ -388,12 +389,12 @@
       <workItem from="1496623290657" duration="14899000" />
       <workItem from="1496640508232" duration="18000" />
       <workItem from="1496640538958" duration="5208000" />
-      <workItem from="1496646739468" duration="1026000" />
+      <workItem from="1496646739468" duration="6165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98217000" />
+    <option name="totallyTimeSpent" value="103356000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -569,20 +570,6 @@
     <entry file="file://$PROJECT_DIR$/js/jquery-3.1.1.min.js" />
     <entry file="file://$PROJECT_DIR$/js/bootstrap.min.css" />
     <entry file="file://$PROJECT_DIR$/html/1.html" />
-    <entry file="file://$PROJECT_DIR$/html/playInformation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/editUser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="97" selection-start-line="7" selection-start-column="97" selection-end-line="7" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html/editStudio.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -726,53 +713,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/studio.html">
+    <entry file="file://$PROJECT_DIR$/html/playInformation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="134" column="59" selection-start-line="134" selection-start-column="59" selection-end-line="134" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/play.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="18" column="66" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="66" />
+        <state relative-caret-position="126">
+          <caret line="16" column="43" selection-start-line="14" selection-start-column="8" selection-end-line="16" selection-end-column="43" />
           <folding>
-            <marker date="1496647152860" expanded="true" signature="2352:2450" ph="..." />
-            <marker date="1496647152860" expanded="true" signature="2592:2728" ph="..." />
+            <marker date="1496557907343" expanded="true" signature="1165:2004" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/user.html">
+    <entry file="file://$PROJECT_DIR$/html/editUser.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="137" column="63" selection-start-line="137" selection-start-column="63" selection-end-line="137" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/personalCenter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-361">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        <state relative-caret-position="126">
+          <caret line="7" column="97" selection-start-line="7" selection-start-column="97" selection-end-line="7" selection-end-column="97" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        <state relative-caret-position="90">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/personalCenter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1129">
+          <caret line="143" column="45" selection-start-line="143" selection-start-column="45" selection-end-line="143" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/play.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding>
+            <marker date="1496652386155" expanded="true" signature="2352:2450" ph="..." />
+            <marker date="1496652386155" expanded="true" signature="2592:2728" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/studio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="153" column="63" selection-start-line="153" selection-start-column="63" selection-end-line="153" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="154" column="45" selection-start-line="154" selection-start-column="45" selection-end-line="154" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
           <folding />
         </state>
       </provider>

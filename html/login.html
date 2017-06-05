@@ -30,7 +30,7 @@
                 status = parseInt(data.Detail.status);
                 console.log("status++++", status);
                 if (status === 1 || status === 2) {
-                    window.location.href = 'home.html';
+                    window.location.href = 'home.html?status=1';
                 } else
                     document.getElementById("warning").innerHTML = "用户名或密码错误"
             }

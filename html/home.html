@@ -12,12 +12,24 @@
 </head>
 <script>
     window.onload = function () {
-        var data = sessionStorage.getItem('user');
-        
-        if(data){
-            document.getElementById("user").innerHTML ="退出";
-            document.getElementById("logout").innerHTML=`您好！ ${data}`;
+        var url = location.href;
+        var getVal = url.split('?')[1];
+        var showVal = parseInt(getVal.split('=')[1]);
+        console.log(showVal);
+        if(showVal === 1 ){
+            var data = sessionStorage.getItem('user');
+            if(data){
+                document.getElementById("user").innerHTML ="退出";
+                document.getElementById("logout").innerHTML=`您好！ ${data}`;
+                document.getElementById("user").href='./login.html';
+                document.getElementById("logout").href='./personalCenter.html';
+            }
+        }else if(showVal === 0){
+            console.log(showVal);
+            document.getElementById("logout").innerHTML=`登录`;
+            document.getElementById("logout").href=`./login.html`;
         }
+
     }
 </script>
 <body>
@@ -30,8 +42,8 @@
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
         <a class="navbar-brand" href="./seat.html">座位管理</a>
-        <a class="navbar-brand log" id="user" href="./login.html"></a>
-        <a class="navbar-brand log" href="./personalCenter.html" id="logout">退出</a>
+        <a class="navbar-brand log" id="user" href="./personalCenter.html"></a>
+        <a class="navbar-brand log" href="./login.html" id="logout">退出</a>
     </div>
 </nav>
 
