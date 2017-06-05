@@ -14,8 +14,9 @@
     window.onload = function () {
 
         var data = sessionStorage.getItem('user');
-        document.getElementById("user").innerHTML =data;
-        document.getElementById("logout").innerHTML=`您好！`;
+        document.getElementById("user").innerHTML ="退出";
+        document.getElementById("logout").innerHTML=`您好！ ${data}`;
+
 
         $.ajax({
             url: "http://123.206.67.174:18000/user/queryUser",

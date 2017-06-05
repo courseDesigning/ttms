@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>修改剧目</title>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src=".././lib/jquery-3.1.1.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/play.css">
 </head>
 <script>
@@ -22,7 +22,8 @@
             data: {
                 film_name: name
             },
-            crossDomain: true, xhrFields: {withCredentials: true},
+            crossDomain: true,
+            xhrFields: {withCredentials: true},
             success: function (data) {
                 var object = data.Detail[0];
                 console.log("film_name+++++", object);
@@ -35,9 +36,47 @@
                 $('#price').attr("value", `${object.film_price}`);
             }
         });
-        document.getElementById("goBackToPlay").addEventListener("click", function () {
+
+     document.getElementById("goBackToPlay").addEventListener("click", function () {
             window.location.href = "play.html";
         });
+
+        /*  document.getElementById("submit").addEventListener("click", function () {
+            var name = document.getElementById("name").value;
+            var star = document.getElementById("star").value;
+            var release = document.getElementById("release").value;
+            var hourlong = document.getElementById("hourlong").value;
+            var type = document.getElementById("type").value;
+            var price = document.getElementById("price").value;
+            var formDOM=document.getElementById("upload");
+            var datas = new FormData(formDOM);
+            datas.append("film_name", name);
+            datas.append("film_star", star);
+            datas.append("film_release", release);
+            datas.append("film_hourlong", hourlong);
+            datas.append("film_type", type);
+            datas.append("film_price", price);
+            console.log(datas);
+            $.ajax({
+                url: `http://123.206.67.174:18000/film/updatafilm`,
+                type: 'post',
+                datatype: 'jsonp',
+                crossDomain: true,
+                xhrFields: {withCredentials: true},
+                data: datas,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log("upload", data);
+                    /!* if (data.Detail.status) {
+                     document.getElementById("addWarning").innerHTML = "修改成功！";
+                     window.location.href = 'play.html';
+                     } else {
+                     document.getElementById("addWarning").innerHTML = "修改失败！";
+                     }*!/
+                },
+            });
+        });*/
 
         document.getElementById("submit").addEventListener("click", function () {
             var name = document.getElementById("name").value;
@@ -69,7 +108,30 @@
                 }
             });
         })
-    }
+
+
+    };
+
+    /*  function upload() {
+     var formDOM = document.getElementById("upload");
+     var data = new FormData(formDOM);
+     console.log("mew", data);
+     data.append("film_id", "6");
+     console.log("formData", data);
+     $.ajax({
+     url: `http://123.206.67.174:18000/film/updatafilm?`,
+     type: 'post',
+     datatype: 'jsonp',
+     data: data,
+     crossDomain: true,
+     xhrFields: {withCredentials: true},
+     processData: false,
+     contentType: false,
+     success: function (data) {
+     console.log("upload", data);
+     }
+     })
+     }*/
 </script>
 <body>
 <div class="playTheme">
@@ -79,28 +141,36 @@
     <div style="margin-left: 45%">
         <span id="addWarning"></span>
     </div>
-    <div>
-        <input type="text" placeholder="请输入影片名字" class="form-control  btn btn-default addInput" id="name">
-    </div>
-    <div>
-        <input type="text" placeholder="请输入影片主演" class="form-control  btn btn-default addInput" id="star">
-    </div>
-    <div>
-        <input type="text" placeholder="请输入影片上映时间" class="form-control  btn btn-default addInput" id="release">
-    </div>
-    <div>
-        <input type="text" placeholder="请输入影片时长" class="form-control  btn btn-default addInput" id="hourlong">
-    </div>
-    <div>
-        <input type="text" placeholder="请输入影片类型" class="form-control  btn btn-default addInput" id="type">
-    </div>
-    <div>
-        <input type="text" placeholder="请输入影片价格" class="form-control  btn btn-default addInput" id="price">
-    </div>
-    <div class="addButton">
-        <button type="button" class="btn btn-default" style="margin-right: 20px" id="goBackToPlay">返回</button>
-        <button type="button" class="btn btn-default" id="submit">提交</button>
-    </div>
+    <form enctype="multipart/form-data" id="upload" method="post">
+        <div>
+            <input type="text" placeholder="请输入影片名字" class="form-control  btn btn-default addInput" id="name">
+        </div>
+        <div>
+            <input type="text" placeholder="请输入影片主演" class="form-control  btn btn-default addInput" id="star">
+        </div>
+        <div>
+            <input type="text" placeholder="请输入影片上映时间" class="form-control  btn btn-default addInput" id="release">
+        </div>
+        <div>
+            <input type="text" placeholder="请输入影片时长" class="form-control  btn btn-default addInput" id="hourlong">
+        </div>
+        <div>
+            <input type="text" placeholder="请输入影片类型" class="form-control  btn btn-default addInput" id="type">
+        </div>
+        <div>
+            <input type="text" placeholder="请输入影片价格" class="form-control  btn btn-default addInput" id="price">
+        </div>
+        <div>
+            <label for="file">上传照片:</label>
+            <input type="file" id="file" accept="image/jpg,image/png"/><br/>
+            <!-- <button type="button" onclick=upload()>上传</button>-->
+        </div>
+        <!--  <input type="button" value="上传" onclick=upload() />-->
+        <div class="addButton">
+            <button type="button" class="btn btn-default" style="margin-right: 20px" id="goBackToPlay">返回</button>
+            <button type="button" class="btn btn-default" id="submit">提交</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

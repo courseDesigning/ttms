@@ -14,8 +14,8 @@
     window.onload = function () {
         var data = sessionStorage.getItem('user');
         if(data){
-            document.getElementById("user").innerHTML =data;
-            document.getElementById("logout").innerHTML=`您好！`;
+            document.getElementById("user").innerHTML ="退出";
+            document.getElementById("logout").innerHTML=`您好！ ${data}`;
         }
     }
 </script>
@@ -27,8 +27,8 @@
         <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand log" id="user" href="./personalCenter.html"></a>
-        <a class="navbar-brand log" href="./login.html">退出</a>
+        <a class="navbar-brand log" id="user" href="./login.html"></a>
+        <a class="navbar-brand log" href="./personalCenter.html" id="logout">退出</a>
     </div>
 </nav>
 
