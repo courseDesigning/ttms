@@ -12,23 +12,29 @@
 </head>
 <script>
     window.onload = function () {
-        var url = location.href;
+        var data = sessionStorage.getItem('user');
+        if(data){
+            document.getElementById("user").innerHTML ="退出";
+            document.getElementById("logout").innerHTML=`您好！ ${data}`;
+            document.getElementById("user").href='./login.html';
+            document.getElementById("logout").href='./personalCenter.html';
+        }else{
+            document.getElementById("logout").innerHTML=`登录`;
+            document.getElementById("logout").href=`./login.html`;
+        }
+
+      /*  var url = location.href;
         var getVal = url.split('?')[1];
         var showVal = parseInt(getVal.split('=')[1]);
         console.log(showVal);
         if(showVal === 1 ){
             var data = sessionStorage.getItem('user');
-            if(data){
-                document.getElementById("user").innerHTML ="退出";
-                document.getElementById("logout").innerHTML=`您好！ ${data}`;
-                document.getElementById("user").href='./login.html';
-                document.getElementById("logout").href='./personalCenter.html';
-            }
+
         }else if(showVal === 0){
             console.log(showVal);
             document.getElementById("logout").innerHTML=`登录`;
             document.getElementById("logout").href=`./login.html`;
-        }
+        }*/
 
     }
 </script>

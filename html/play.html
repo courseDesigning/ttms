@@ -15,8 +15,15 @@
     window.onload = function () {
 
         var data = sessionStorage.getItem('user');
-        document.getElementById("user").innerHTML ="退出";
-        document.getElementById("logout").innerHTML=`您好！ ${data}`;
+        if(data){
+            document.getElementById("user").innerHTML ="退出";
+            document.getElementById("logout").innerHTML=`您好！ ${data}`;
+            document.getElementById("user").href='./home.html';
+            document.getElementById("logout").href='./personalCenter.html';
+        }else{
+            document.getElementById("logout").innerHTML=`登录`;
+            document.getElementById("logout").href=`./login.html`;
+        }
 
         $('#filmName').focus();
         $.ajax({
@@ -69,12 +76,8 @@
             window.location.href = 'addPlay.html';
         });
 
-      /*  document.getElementById("user").addEventListener("click",function () {
-            sessionStorage.removeItem('user');
-            window.location.href=`home.html?status=0`;
-       });*/
-
       document.getElementById("user").addEventListener('click',function () {
+          sessionStorage.removeItem("user");
           $.ajax({
               url: `http://123.206.67.174:18000/user/cancellation?`,
               type: 'get',
@@ -128,7 +131,7 @@
     <a class="navbar-brand" href="./studio.html">影厅管理</a>
     <a class="navbar-brand" href="#">演出计划管理</a>
     <a class="navbar-brand" href="./seat.html">座位管理</a>
-    <a class="navbar-brand log" id="user">登录</a>
+    <a class="navbar-brand log" id="user"></a>
     <a class="navbar-brand log" href="./personalCenter.html" id="logout">退出</a>
 </nav>
 
