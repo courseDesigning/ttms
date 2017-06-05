@@ -125,13 +125,14 @@
 
 <nav class="navStyle">
     <div>
-        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="#">首页</a>
         <a class="navbar-brand" href="./user.html">用户管理</a>
-        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand log" href="./login.html" id="user"></a>
-        <a class="navbar-brand log" href="#">退出</a>
+        <a class="navbar-brand" href="./seat.html">座位管理</a>
+        <a class="navbar-brand log" id="user" href="personalCenter.html"></a>
+        <a class="navbar-brand log" href="./login.html">退出</a>
     </div>
 </nav>
 
@@ -145,9 +146,9 @@
                 <tbody>
                 <div class="searchStudio">
                     <input type=" text" class="form-control search" id="studioId" placeholder="请输入ID查询"/>
-                    <button class="btn btn-primary btn-xs buttonStyle" onclick=searchById()>查询 ID</button>
+                    <button class="btn buttonStyle" onclick=searchById()>查询 ID</button>
                 </div>
-                <button class="btn btn-primary btn-xs searchStudio buttonStyle" onclick=addStudio()><b>+</b> 添 加 用 户
+                <button class="btn searchStudio buttonStyle" onclick=addStudio()><b>+</b> 添 加 用 户
                 </button>
                 <tr>
                     <th>演出厅ID</th>

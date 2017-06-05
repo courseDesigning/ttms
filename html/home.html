@@ -13,13 +13,14 @@
 <script>
     window.onload = function () {
         var data = sessionStorage.getItem('user');
-        if(data){
-            document.getElementById("user").innerHTML =data;
-            document.getElementById("logout").innerHTML=`您好！`;
+        if (data) {
+            document.getElementById("user").innerHTML = data;
+            document.getElementById("logout").innerHTML = `您好！`;
         }
     }
 </script>
 <body>
+
 <nav class="navStyle">
     <div>
         <a class="navbar-brand" href="#">首页</a>
@@ -27,7 +28,8 @@
         <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand log" id="user" href="../js/personalCenter.html"></a>
+        <a class="navbar-brand" href="./seat.html">座位管理</a>
+        <a class="navbar-brand log" id="user" href="personalCenter.html"></a>
         <a class="navbar-brand log" href="./login.html">退出</a>
     </div>
 </nav>

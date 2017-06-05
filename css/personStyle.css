@@ -1,0 +1,7 @@
+#personImage{
+    background: url(../images/7.jpg);
+    background-image: url("../images/7.jpg");
+    margin: 0 auto;
+    width: 100%;
+    height: 300px;
+}
