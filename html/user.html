@@ -17,7 +17,6 @@
         document.getElementById("user").innerHTML ="退出";
         document.getElementById("logout").innerHTML=`您好！ ${data}`;
 
-
         $.ajax({
             url: "http://123.206.67.174:18000/user/queryUser",
             type: "GET",
@@ -121,23 +120,26 @@
     }
 
     function addUser() {
-        window.location.href="./addUser.html"
+        window.location.href = "./addUser.html"
     }
 
 </script>
 <body>
 
+
 <nav class="navStyle">
     <div>
-        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="#">首页</a>
         <a class="navbar-brand" href="./user.html">用户管理</a>
         <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand log" href="./login.html" id="user">登录</a>
-        <a class="navbar-brand log" href="./home.html" id="logout">退出</a>
+        <a class="navbar-brand" href="./seat.html">座位管理</a>
+        <a class="navbar-brand log" id="user" href="./home.html"></a>
+        <a class="navbar-brand log" href="./personalCenter.html" id="logout">退出</a>
     </div>
 </nav>
+
 <br>
 <br>
 <div>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>personalCenter</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/personStyle.css">
+    <link rel="stylesheet" href=../css/footer.css>
+</head>
+
+<script type="text/javascript">
+
+    var user, pass;
+
+    window.onload = function () {
+      /*  user = sessionStorage.getItem('user');
+        document.getElementById("user").innerHTML = user;
+        document.getElementById("userName").innerHTML = user;*/
+
+        var data = sessionStorage.getItem('user');
+        document.getElementById("user").innerHTML ="退出";
+        document.getElementById("logout").innerHTML=`您好！ ${data}`;
+    };
+
+    $(document).ready(function () {
+        $(".btn-pref .btn").click(function () {
+            $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+            // $(".tab").addClass("active"); // instead of this do the below
+            $(this).removeClass("btn-default").addClass("btn-primary");
+        });
+    });
+
+
+    function updatePass() {
+        pass = document.getElementById("pass").value;
+
+        $.ajax({
+            url: 'http://123.206.67.174:18000/user/modifyUser',
+            type: 'post',     // 请求类型，常用的有 GET 和 POST
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            data: {
+                username: user,
+                password: pass
+            },
+            success: function (data, status, xhr) { // 接口调用成功回调函数
+                console.log("ddd：", data);
+                status = parseInt(data.Detail.status);
+                if (status === 1 || status === 2) {
+//                    window.location.href = './personalCenter.html';
+                } else
+                    document.getElementById("warning").innerHTML = "修改密码失败"
+            }
+        });
+    }
+
+    function upload() {
+//        var formData = new FormData();
+//        formData.append('Image', $('#file')[0].files[0])
+//
+//        console.log($('#file')[0].files[0]);
+//
+//        $.ajax({
+//            url: 'http://123.206.67.174:18000/user/updataImage',
+//            type: 'post',     // 请求类型，常用的有 GET 和 POST
+//            dataType: 'jsonp',
+//            crossDomain: true,
+//            xhrFields: {
+//                withCredentials: 'true'
+//            },
+//            data: formData,
+//            processData: false,
+//            contentType: false,
+//            success: function (data, status, xhr) { // 接口调用成功回调函数
+//                console.log("ddd：", data);
+//            }
+//        });
+
+
+        var formData = new FormData($("#frmUploadFile")[0]);
+        console.log(formData)
+
+        $.ajax({
+            url: 'http://123.206.67.174:18000/user/updataImage',
+            type: 'POST',
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {withCredentials: true},
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log('imgUploader upload success status: ', data.Detail.status);
+                if (1 === data.Detail.status) {
+                    $("#imgShow").attr('src', data.msg.url);
+                    $("#spanMessage").html("上传成功");
+                } else {
+                    $("#spanMessage").html("上传失败");
+                }
+            },
+            error: function (err) {
+                console.log("err ", err);
+                $("#spanMessage").html("与服务器通信发生错误");
+            }
+        });
+
+    }
+
+</script>
+
+<body>
+
+<nav class="navStyle">
+    <div>
+        <a class="navbar-brand" href="#">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="./play.html">剧目管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand log" id="user" href="./personalCenter.html"></a>
+        <a class="navbar-brand log" href="./login.html" id="logout">退出</a>
+    </div>
+</nav>
+
+<div class="card hovercard">
+    <div class="card-background">
+        <img class="card-bkimg" alt="" src="../images/7.jpg">
+    </div>
+    <div class="useravatar">
+        <img alt="" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" id="imgShow">
+    </div>
+    <div class="card-info"><span class="card-title" id="userName"></span></div>
+</div>
+<div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+        <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span
+                class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <div class="hidden-xs">工作计划</div>
+        </button>
+    </div>
+    <div class="btn-group" role="group">
+        <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span
+                class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            <div class="hidden-xs">上传图片</div>
+        </button>
+    </div>
+    <div class="btn-group" role="group">
+        <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span
+                class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <div class="hidden-xs">个人</div>
+        </button>
+    </div>
+</div>
+
+<div class="well">
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+            <h4>2016年8月19日......<a href="#">详情</a></h4>
+            <h4>2016年8月21日......<a href="#">详情</a></h4>
+            <h4>2016年9月2日......<a href="#">详情</a></h4>
+            <h4>2016年9月10日......<a href="#">详情</a></h4>
+            <h4>2016年9月15日......<a href="#">详情</a></h4>
+            <h4>2016年8月30日进行工作总结大会...<a href="#">详情</a></h4>
+            <h4>2016年8月30日进行工作总结大会...<a href="#">详情</a></h4>
+            <h4>2016年8月30日进行工作总结大会...<a href="#">详情</a></h4>
+            <h4>2016年8月30日进行工作总结大会...<a href="#">详情</a></h4>
+        </div>
+        <div class="tab-pane fade in" id="tab2">
+            <div id="updateImage">
+                <h1>上传图片</h1>
+                <!--<div id="uploadForm">-->
+                <!--<input id="file" type="file"/><br>-->
+                <!--<button id="upload" type="button" onclick=upload()>upload</button>-->
+                <!--</div>-->
+
+                <form class="form-horizontal" enctype='multipart/form-data' method='post' action='javascript:;'
+                      role="form" id="frmUploadFile">
+                    <div>
+                        <div>
+                            <input type="file" name="files" class="form-control" multiple="multiple"
+                                   accept="image/png,image/jpg"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class=" help-inline" id="spanMessage">选择文件，并上传
+                            </div>
+                            <button class="btn btn-primary form-control" onClick="upload()">上传</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="tab-pane fade in" id="tab3">
+            <div id="updatePass">
+                <h1>修改密码</h1>
+                <input type="text" id="pass" class="form-control" placeholder="输入修改后的密码">
+                <br><span id="warning"></span>
+                <button class="btn btn-primary form-control" onClick=updatePass()>修改密码</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!--页脚从这里开始-->
+<div class="content">
+    <div class="spanType">
+                 <span class="spanStyle">
+                     线上线下支付
+                 </span>
+        <span class="spanStyle">
+                     精彩与你共享
+                 </span>
+        <span class="spanStyle">
+                    给你非凡体验
+                 </span>
+    </div>
+    <hr/>
+    <div>
+        <ul class="ulStyle">
+            <li>关于我们</li>
+            <li>帮助中心</li>
+            <li>售后服务</li>
+            <li>配送与验收</li>
+            <li>商务合作</li>
+            <li>企业采购</li>
+            <li>友情链接</li>
+        </ul>
+        <div class="location">
+            公司版权所有 © 1997-2017 售后服务电话：15829211124
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

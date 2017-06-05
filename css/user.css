@@ -1,45 +1,46 @@
-.custab{
+.custab {
     border: 1px solid #ccc;
     padding: 5px;
     margin: 5% 0;
     box-shadow: 3px 3px 2px #ccc;
     transition: 0.5s;
 }
-.custab:hover{
+
+.custab:hover {
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
 }
 
-#waring{
-    color:red;
+#waring {
+    color: red;
 }
 
-.searchUser{
+.searchUser {
     display: inline;
 }
 
-.search{
+.search {
     width: 200px;
     display: inline;
 }
 
-
-.addUserStyle{
+.addUserStyle {
     width: 500px;
-    margin:0 auto;;
+    margin: 0 auto;;
 }
 
-.editUser{
+.editUser {
     width: 500px;
     text-align: center;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
-.buttonStyle{
-    background:#999;
+.buttonStyle {
+    background: #f5f1eb;
+    color: #b4a078;
+}
+
+.buttonStyle:hover {
+    /*background-color: #b4a078;*/
     color: whitesmoke;
-}
-
-.buttonStyle:hover{
-    background-color: #b4a078;
 }
