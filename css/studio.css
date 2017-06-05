@@ -28,3 +28,13 @@
     width: 500px;
     margin: 0 auto;
 }
+
+.buttonStyle {
+    background: #f5f1eb;
+    color: #b4a078;
+}
+
+.buttonStyle:hover {
+    /*background-color: #b4a078;*/
+    color: whitesmoke;
+}
