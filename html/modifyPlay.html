@@ -10,6 +10,29 @@
 </head>
 <script>
     window.onload = function () {
+        /*  document.getElementById("upload").addEventListener("click",function () {
+         var formDOM=document.getElementById("uploadForm")
+         var data=new FormData(formDOM);
+         data.append("film_name","速度与激情2");
+         data.append("film_tostar","张三");
+         data.append("film_release","2017年5月30日");
+         data.append("film_hourlong","105分钟");
+         data.append("film_type","动作");
+         data.append("film_price","49");
+         $.ajax({
+         url:'http://123.206.67.174:18000/film/updatafilm',
+         type:'POST',
+         dataType:'jsonp',
+         crossDomain:true,
+         xhrFields:{withCredentials:true},
+         data:data,
+         processData:false,
+         contentType:false,
+         success:function (data) {
+         alert(data);
+         }
+         });
+         });*/
         var url = decodeURI(location.href);
         console.log(url);
         var getVal = url.split('?')[1];
@@ -37,18 +60,18 @@
             }
         });
 
-     document.getElementById("goBackToPlay").addEventListener("click", function () {
+        document.getElementById("goBackToPlay").addEventListener("click", function () {
             window.location.href = "play.html";
         });
 
-        /*  document.getElementById("submit").addEventListener("click", function () {
+        document.getElementById("submit").addEventListener("click", function () {
             var name = document.getElementById("name").value;
             var star = document.getElementById("star").value;
             var release = document.getElementById("release").value;
             var hourlong = document.getElementById("hourlong").value;
             var type = document.getElementById("type").value;
             var price = document.getElementById("price").value;
-            var formDOM=document.getElementById("upload");
+            var formDOM = document.getElementById("upload");
             var datas = new FormData(formDOM);
             datas.append("film_name", name);
             datas.append("film_star", star);
@@ -68,70 +91,150 @@
                 contentType: false,
                 success: function (data) {
                     console.log("upload", data);
-                    /!* if (data.Detail.status) {
+                    /* if (data.Detail.status) {
                      document.getElementById("addWarning").innerHTML = "修改成功！";
                      window.location.href = 'play.html';
                      } else {
                      document.getElementById("addWarning").innerHTML = "修改失败！";
-                     }*!/
+                     }*/
                 },
             });
-        });*/
+        });
 
-        document.getElementById("submit").addEventListener("click", function () {
-            var name = document.getElementById("name").value;
-            var star = document.getElementById("star").value;
-            var release = document.getElementById("release").value;
-            var hourlong = document.getElementById("hourlong").value;
-            var type = document.getElementById("type").value;
-            var price = document.getElementById("price").value;
-            $.ajax({
-                url: `http://123.206.67.174:18000/film/updata?`,
-                type: 'get',
-                datatype: 'jsonp',
-                data: {
-                    film_name: name,
-                    film_tostar: star,
-                    film_release: release,
-                    film_hourlong: hourlong,
-                    film_type: type,
-                    film_price: price
-                },
-                crossDomain: true, xhrFields: {withCredentials: true},
-                success: function (data) {
-                    if (data.Detail.status) {
-                        document.getElementById("addWarning").innerHTML = "修改成功！";
-                        window.location.href = 'play.html';
-                    } else {
-                        document.getElementById("addWarning").innerHTML = "修改失败！";
-                    }
-                }
-            });
-        })
+        /*  document.getElementById("submit").addEventListener("click", function () {
+         var name = document.getElementById("name").value;
+         var star = document.getElementById("star").value;
+         var release = document.getElementById("release").value;
+         var hourlong = document.getElementById("hourlong").value;
+         var type = document.getElementById("type").value;
+         var price = document.getElementById("price").value;
+         $.ajax({
+         url: `http://123.206.67.174:18000/film/updata?`,
+         type: 'get',
+         datatype: 'jsonp',
+         data: {
+         film_name: name,
+         film_tostar: star,
+         film_release: release,
+         film_hourlong: hourlong,
+         film_type: type,
+         film_price: price
+         },
+         crossDomain: true, xhrFields: {withCredentials: true},
+         success: function (data) {
+         if (data.Detail.status) {
+         document.getElementById("addWarning").innerHTML = "修改成功！";
+         window.location.href = 'play.html';
+         } else {
+         document.getElementById("addWarning").innerHTML = "修改失败！";
+         }
+         }
+         });
+         });*/
+
+        /*  document.getElementById("_submit").addEventListener("click",function () {
+         var formDOM=document.getElementById('uploadFilm');
+         var formData = new FormData(formDOM);
+         formData.append("film_id","6");
+         $.ajax({
+         url: `http://123.206.67.174:18000/film/filmImage`,
+         type: 'post',
+         datatype: 'jsonp',
+         crossDomain: true,
+         xhrFields: {withCredentials: true},
+         data: formData,
+         processData: false,
+         contentType: false,
+         success: function (data) {
+         console.log("upload", data);
+         if (data.Detail.status) {
+         document.getElementById("addWarning").innerHTML = "修改成功！";
+         window.location.href = 'play.html';
+         } else {
+         document.getElementById("addWarning").innerHTML = "修改失败！";
+         }
+         },
+         });
+         })*/
 
 
     };
 
-    /*  function upload() {
-     var formDOM = document.getElementById("upload");
-     var data = new FormData(formDOM);
-     console.log("mew", data);
-     data.append("film_id", "6");
-     console.log("formData", data);
-     $.ajax({
-     url: `http://123.206.67.174:18000/film/updatafilm?`,
-     type: 'post',
-     datatype: 'jsonp',
-     data: data,
-     crossDomain: true,
-     xhrFields: {withCredentials: true},
-     processData: false,
-     contentType: false,
-     success: function (data) {
-     console.log("upload", data);
-     }
-     })
-     }*/
+    function upload() {
+      /*  var formDOM = document.getElementById("upload");
+        var data = new FormData(formDOM);
+        console.log("mew", data);
+        data.append("film_id", "6");
+        console.log("formData", data);*/
+
+        let file = document.getElementById("upload");
+        let formData = new FormData();
+        formData.append('avatar', file);
+        $.ajax({
+            url: `http://123.206.67.174:18000/film/updatafilm?`,
+            type: 'post',
+            datatype: 'jsonp',
+            data: formData,
+            crossDomain: true,
+            xhrFields: {withCredentials: true},
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                console.log("upload", data);
+            }
+        })
+    }
+
+    function judgeName() {
+        var name = document.getElementById("name").value;
+        var pattern = /^[\u4e00-\u9fa5a-zA-Z0-9]*$/;
+        var status = name.match(pattern);
+        if (!status) {
+            alert("格式不正确，请重新输入");
+        }
+    }
+
+    function judgeStar() {
+        var star = document.getElementById("star").value;
+        var pattern = /[\u4e00-\u9fa5a-zA-Z0-9]*/;
+        var status = name.match(pattern);
+        if (!status) {
+            alert("格式不正确，请重新输入！");
+        }
+    }
+
+    function judgeRelease() {
+        var release = document.getElementById("release").value;
+        var pattern = /^2017年(0?[1-9]|1[0-2])月((0?[1-9])|((1|2)[0-9])|30|31)日$/;
+        if (!release.match(pattern)) {
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgeHour() {
+        var houlong = document.getElementById("hourlong").value;
+        var pattern = /^([0-9]*)分钟$/;
+        if (!houlong.match(pattern)) {
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgeType() {
+        var type = document.getElementById("type").value;
+        var pattern = /^[\u4e00-\u9fa5]*$/;
+        if (!type.match(pattern)) {
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgePrice() {
+        var price = document.getElementById("price").value;
+        var pattern = /^[1-9]*$/;
+        if (!price.match(pattern)) {
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
 </script>
 <body>
 <div class="playTheme">
@@ -141,31 +244,36 @@
     <div style="margin-left: 45%">
         <span id="addWarning"></span>
     </div>
-    <form enctype="multipart/form-data" id="upload" method="post">
+    <form enctype="multipart/form-data" id="upload" method="POST">
         <div>
-            <input type="text" placeholder="请输入影片名字" class="form-control  btn btn-default addInput" id="name">
+            <input type="text" placeholder="请输入影片名字" class="form-control  btn btn-default addInput"
+                   id="name" onmouseleave=judgeName()>
         </div>
         <div>
-            <input type="text" placeholder="请输入影片主演" class="form-control  btn btn-default addInput" id="star">
+            <input type="text" placeholder="请输入影片主演" class="form-control  btn btn-default addInput"
+                   id="star" onmouseleave=judgeStar()>
         </div>
         <div>
-            <input type="text" placeholder="请输入影片上映时间" class="form-control  btn btn-default addInput" id="release">
+            <input type="text" placeholder="请输入影片上映时间" class="form-control  btn btn-default addInput"
+                   id="release" onmouseleave=judgeRelease()>
         </div>
         <div>
-            <input type="text" placeholder="请输入影片时长" class="form-control  btn btn-default addInput" id="hourlong">
+            <input type="text" placeholder="请输入影片时长" class="form-control  btn btn-default addInput"
+                   id="hourlong" onmouseleave=judgeHour()>
         </div>
         <div>
-            <input type="text" placeholder="请输入影片类型" class="form-control  btn btn-default addInput" id="type">
+            <input type="text" placeholder="请输入影片类型" class="form-control  btn btn-default addInput"
+                   id="type" onmouseleave=judgeType()>
         </div>
         <div>
-            <input type="text" placeholder="请输入影片价格" class="form-control  btn btn-default addInput" id="price">
+            <input type="text" placeholder="请输入影片价格" class="form-control  btn btn-default addInput"
+                   id="price" onmouseleave=judgePrice()>
         </div>
         <div>
             <label for="file">上传照片:</label>
             <input type="file" id="file" accept="image/jpg,image/png"/><br/>
-            <!-- <button type="button" onclick=upload()>上传</button>-->
+            <button type="button" onclick=upload()>上传</button>
         </div>
-        <!--  <input type="button" value="上传" onclick=upload() />-->
         <div class="addButton">
             <button type="button" class="btn btn-default" style="margin-right: 20px" id="goBackToPlay">返回</button>
             <button type="button" class="btn btn-default" id="submit">提交</button>

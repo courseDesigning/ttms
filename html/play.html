@@ -15,8 +15,8 @@
     window.onload = function () {
 
         var data = sessionStorage.getItem('user');
-        document.getElementById("user").innerHTML =data;
-        document.getElementById("logout").innerHTML=`您好！`;
+        document.getElementById("user").innerHTML ="退出";
+        document.getElementById("logout").innerHTML=`您好！ ${data}`;
 
         $('#filmName').focus();
         $.ajax({
@@ -72,7 +72,7 @@
 
     function modifyFilm(object) {
         var name= $(object).attr("id");
-        window.location.assign(encodeURI(`modifyPlay.html?id=${name}`));
+        window.location.assign(encodeURI(`modifyPlay.html?name=${name}`));
     }
 
     function deleteFilm(object) {

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
-    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../lib/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <script>
@@ -28,7 +28,7 @@
             success: function (data, status, xhr) { // 接口调用成功回调函数
                 console.log("ddd：", data);
                 status = parseInt(data.Detail.status);
-                console.log("status++++",status);
+                console.log("status++++", status);
                 if (status === 1 || status === 2) {
                     window.location.href = 'home.html';
                 } else

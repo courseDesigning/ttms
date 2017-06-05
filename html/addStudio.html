@@ -2,9 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>addStudio</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/studio.css">
 </head>
+
+<script>
+    function addStudio() {
+        $.ajax({
+            url: "http://123.206.67.174:18000/studio/addStudio",
+            type: "post",
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            data: {
+                studio_name: document.getElementById("studioName").value,
+                studio_row_count: document.getElementById("row").value,
+                studio_col_count: document.getElementById("col").value,
+                studio_flag: document.getElementById("status").value,
+            },
+            success: function (data) {
+                console.log("user: ", data);
+                if (data.Detail.status === 1) {
+                    window.location.href = './studio.html';
+                } else {
+                    document.getElementById("waring").innerHTML = "添加失败！"
+                }
+            }
+        })
+    }
+</script>
+
 <body>
-$END$
+
+<nav class="navStyle">
+    <div class="">
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand" href="./login.html">登陆</a>
+    </div>
+</nav>
+
+<div class="addStudioStyle">
+    <br>
+    <div>
+        <span>演出厅：</span>
+        <input type="text" id="studioName" class='form-control'/>
+    </div>
+    <div>
+        <span>演出厅行数：</span>
+        <input type="text" id="row" class='form-control'>
+    </div>
+    <div>
+        <span>演出厅列数：</span>
+        <input type="text" id="col" class='form-control'>
+    </div>
+    <div>
+        <span>演出厅状态:</span>
+        <input type="text" id="status" class='form-control'>
+    </div>
+    <br>
+    <button class="btn  btn-primary btn-block btn-signin" onclick=addStudio()>提交</button>
+    <span id="waring"></span>
+</div>
+
+
 </body>
 </html>

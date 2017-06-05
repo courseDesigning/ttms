@@ -120,6 +120,10 @@
         });
     }
 
+    function addUser() {
+        window.location.href="./addUser.html"
+    }
+
 </script>
 <body>
 
@@ -145,7 +149,7 @@
                     <input type=" text" class="form-control search" id="userId" placeholder="请输入ID查询"/>
                     <button class="btn   buttonStyle " onclick=searchById()>查询 ID</button>
                 </div>
-                <button href="./addUser.html" class="btn   searchUser buttonStyle"><b>+</b> 添 加 用 户</button>
+                <button class="btn   searchUser buttonStyle" onclick=addUser()><b>+</b> 添 加 用 户</button>
                 <tr>
                     <th>ID</th>
                     <th>姓名</th>

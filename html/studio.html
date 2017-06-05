@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <title>Studio</title>
     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <script src="../lib/jquery-3.1.1.min.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
     <script src=".././lib/jquery-3.1.1.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
-
+    <link rel="stylesheet" href="../css/studio.css">
 </head>
 
 <script>
 
+    var studioInfo;
     window.onload = function () {
+        var data = sessionStorage.getItem('user');
+        document.getElementById("user").innerHTML ="退出";
+        document.getElementById("logout").innerHTML=`您好！ ${data}`;
+
+
         $.ajax({
             url: "http://123.206.67.174:18000/studio/queryStudio",
             type: "GET",
@@ -24,8 +33,92 @@
             },
             success: function (data) {
                 console.log("studio: ", data);
+
+                studioInfo = data;
+
+                var tb = document.getElementById("mytable");
+                for (var i = 0; i < data.Detail.length; i++) {
+                    var tr = tb.insertRow();
+                    tr.setAttribute("id", i);
+                    var td1 = tr.insertCell(0);
+                    var td2 = tr.insertCell(1);
+                    var td3 = tr.insertCell(2);
+                    var td4 = tr.insertCell(3);
+                    var td5 = tr.insertCell(4);
+                    var td6 = tr.insertCell(5);
+                    td1.innerText = data.Detail[i].studio_id;
+                    td2.innerText = data.Detail[i].studio_name;
+                    td3.innerText = data.Detail[i].studio_col_count;
+                    td4.innerText = data.Detail[i].studio_row_count;
+                    td5.innerText = data.Detail[i].studio_flag;
+                    td6.innerHTML = '<td class="text-center"><a class="btn btn-info btn-xs"' +
+                            ' id=' + data.Detail[i].studio_id + ' onclick=editStudio(this)>' +
+                            '<span class="glyphicon glyphicon-edit"></span> Edit</a> ' +
+                            '<a href="#" class="btn btn-danger btn-xs" onclick=deleteStudio()>' +
+                            '<span class="glyphicon glyphicon-remove">Del</span>'
+                }
             }
         })
+    };
+
+    var id;
+
+    function editStudio(a) {
+//        $("tr").click(function () {
+        id = $(a).attr("id");
+        console.log("id:", studioInfo.Detail[id].studio_id);
+//        });
+
+        $("a").attr("href", "editStudio.html?studio_id=" + studioInfo.Detail[id].studio_id);
+    }
+
+    function deleteStudio() {
+        $.ajax({
+                    url: "http://123.206.67.174:18000/studio/deleteStudio",
+                    type: "get",
+                    datatype: 'jsonp',
+                    data: {
+                        studio_id: studioInfo.Detail[id].studio_id
+                    },
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: 'true'
+                    },
+                    success: function (data) {
+                        window.location.hred = './studio.html'
+                    }
+                }
+        )
+    }
+
+    function searchById() {
+        $.ajax({
+            url: "http://123.206.67.174:18000/studio/queryStudio",
+            type: "GET",
+            datatype: 'jsonp',
+            data: {
+                studio_id: document.getElementById("studioId").value
+            },
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            success: function (data) {
+                document.getElementById("mytable").innerHTML = '<tr> <th>演出厅ID</th>' +
+                        ' <th>演出厅名称</th> <th>座位行数</th> ' +
+                        '<th>座位列数</th> <th>状态</th> ' +
+                        '<th>Action</th> </tr>' +
+                        '<tr> <th>' + data.Detail[0].studio_id + '</th>' +
+                        ' <th>' + data.Detail[0].studio_row_count + '</th> ' +
+                        '<th>' + data.Detail[0].studio_col_count + '</th> ' +
+                        '<th>' + data.Detail[0].studio_flag + '</th> ' +
+                        '<th>Action</th> </tr>'
+            }
+        })
+    }
+
+    function addStudio() {
+        window.location.href = "./addStudio.html"
     }
 
 </script>
@@ -33,15 +126,44 @@
 <body>
 
 <nav class="navStyle">
-    <div class="">
+    <div>
         <a class="navbar-brand" href="./home.html">首页</a>
         <a class="navbar-brand" href="./user.html">用户管理</a>
-        <a class="navbar-brand" href="#">座位管理</a>
+        <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
-        <a class="navbar-brand" href="./login.html">登陆</a>
+        <a class="navbar-brand log" href="./home.html" id="user">登录</a>
+        <a class="navbar-brand log" href="#" id="logout">退出</a>
     </div>
 </nav>
+
+
+<br>
+<br>
+<div>
+    <div class="container">
+        <div class="row col-md-9 col-md-offset-2 custyle">
+            <table class="table table-hover table-hover custab" id="mytable">
+                <tbody>
+                <div class="searchStudio">
+                    <input type=" text" class="form-control search" id="studioId" placeholder="请输入ID查询"/>
+                    <button class="btn btn-primary btn-xs buttonStyle" onclick=searchById()>查询 ID</button>
+                </div>
+                <button class="btn btn-primary btn-xs searchStudio buttonStyle" onclick=addStudio()><b>+</b> 添 加 用 户
+                </button>
+                <tr>
+                    <th>演出厅ID</th>
+                    <th>演出厅名称</th>
+                    <th>座位行数</th>
+                    <th>座位列数</th>
+                    <th>状态</th>
+                    <th>Action</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
 </body>
