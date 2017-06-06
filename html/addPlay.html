@@ -9,46 +9,98 @@
     <link rel="stylesheet" href="../css/play.css">
 </head>
 <script>
-    window.onload=function () {
-        document.getElementById("submit").addEventListener("click",function(){
+    window.onload = function () {
+        document.getElementById("submit").addEventListener("click", function () {
             var name = document.getElementById('name').value;
             var star = document.getElementById('star').value;
             var release = document.getElementById('release').value;
             var hourlong = document.getElementById('hourlong').value;
             var type = document.getElementById('type').value;
             var price = document.getElementById('price').value;
-            if(name && star && release && hourlong && type && price){
+            var information=document.getElementById('information').value;
+            if (name && star && release && hourlong && type && price) {
                 $.ajax({
                     url: `http://123.206.67.174:18000/film/addFilm?`,
                     type: 'get',
-                    datatype:'jsonp',
-                    data:{
-                        film_name:name,
-                        film_tostar:star,
-                        film_release:release,
-                        film_hourlong:hourlong,
-                        film_type:type,
-                        film_price:price
+                    datatype: 'jsonp',
+                    data: {
+                        film_name: name,
+                        film_tostar: star,
+                        film_release: release,
+                        film_hourlong: hourlong,
+                        film_type: type,
+                        film_price: price,
+                        film_information:information
                     },
                     crossDomain: true, xhrFields: {withCredentials: true},
-                    success:function(data) {
-                        console.log("status++++++",data.Detail.status);
-                        if(data.Detail.status === 1){
-                            document.getElementById("addWarning").innerText="添加成功!"
-                        }else{
-                            document.getElementById("addWarning").innerText="重复添加!"
+                    success: function (data) {
+                        console.log("status++++++", data.Detail.status);
+                        if (data.Detail.status === 1) {
+                            document.getElementById("addWarning").innerText = "添加成功!"
+                        } else {
+                            document.getElementById("addWarning").innerText = "重复添加!"
                         }
-                        window.location.href="play.html";
+                        window.location.href = "play.html";
                     }
                 })
-            }else{
-                document.getElementById("addWarning").innerText="信息不能为空!"
+            } else {
+                document.getElementById("addWarning").innerText = "信息不能为空!"
             }
         });
 
-        document.getElementById("goBackToPlay").addEventListener("click",function () {
-            window.location.href="play.html";
+        document.getElementById("goBackToPlay").addEventListener("click", function () {
+            window.location.href = "play.html";
         })
+    };
+
+    function judgeName() {
+        var name = document.getElementById("name").value;
+        var pattern = /^[\u4e00-\u9fa5a-zA-Z0-9]*$/;
+        var status = name.match(pattern);
+        if(!status){
+            alert("格式不正确，请重新输入");
+        }
+    }
+
+    function judgeStar() {
+       var star=document.getElementById("star").value;
+        var pattern=/[\u4e00-\u9fa5a-zA-Z0-9]*!/;
+        var status = name.match(pattern);
+        if(!status){
+            alert("格式不正确，请重新输入！");
+        }
+    }
+
+    function judgeRelease() {
+         var release=document.getElementById("release").value;
+        var pattern=/^2017年(0?[1-9]|1[0-2])月((0?[1-9])|((1|2)[0-9])|30|31)日$/;
+        if(!release.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgeHour() {
+      var houlong=document.getElementById("hourlong").value;
+        var pattern=/^([0-9]*)分钟$/;
+        if(!houlong.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgeType() {
+     var type=document.getElementById("type").value;
+        var pattern=/^[\u4e00-\u9fa5]*$/;
+        if(!type.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgePrice() {
+     var price=document.getElementById("price").value;
+        var pattern=/^[1-9]d*$/;
+        if(!price.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
     }
 
 </script>
@@ -61,27 +113,39 @@
         <span id="addWarning"></span>
     </div>
     <div>
-        <input type="text" placeholder="请输入影片名字" class="form-control  btn btn-default addInput" id="name">
+        <input type="text" placeholder="请输入影片名字" class="form-control  addInput" id="name"
+        onblur=judgeName()>
     </div>
     <div>
-        <input type="text" placeholder="请输入影片主演" class="form-control  btn btn-default addInput" id="star">
+        <input type="text" placeholder="请输入影片主演" class="form-control  addInput" id="star"
+        onblur=judgeStar()>
     </div>
     <div>
-        <input type="text" placeholder="请输入影片上映时间" class="form-control  btn btn-default addInput" id="release">
+        <input type="text" placeholder="请输入影片上映时间,例:2017年xx月xx日" class="form-control  addInput"
+               id="release" onblur=judgeRelease()>
     </div>
     <div>
-        <input type="text" placeholder="请输入影片时长" class="form-control  btn btn-default addInput" id="hourlong">
+        <input type="text" placeholder="请输入影片时长,XX分钟" class="form-control  addInput" id="hourlong"
+        onblur=judgeHour()>
     </div>
     <div>
-        <input type="text" placeholder="请输入影片类型" class="form-control  btn btn-default addInput" id="type">
+        <input type="text" placeholder="请输入影片类型" class="form-control addInput" id="type"
+        onblur="judgeType()">
     </div>
     <div>
-        <input type="text" placeholder="请输入影片价格" class="form-control  btn btn-default addInput" id="price">
+        <input type="text" placeholder="请输入影片价格" class="form-control addInput" id="price"
+        onblur=judgePrice()>
     </div>
-    <div class="addButton">
-        <button type="button"  class="btn btn-default"  style="margin-right: 20px" id="goBackToPlay">返回</button>
-        <button type="button"  class="btn btn-default"  id="submit" >提交</button>
+    <div style="display:inline-block" class="addInput">
+        <textarea  id="information" cols="30" rows="10" placeholder="请输入影片简介" class="form-control" style="text-align: center"></textarea>
+    </div>
+    <br>
+    <div class="addButton" style="display:inline">
+        <br><br><br><br><br><br><br><br>
+        <button type="button" class="btn btn-default infoButton" style="margin-right: 50px" id="goBackToPlay">返回</button>
+        <button type="button" class="btn btn-default dangerButton" id="submit">提交</button>
     </div>
 </div>
+
 </body>
 </html>

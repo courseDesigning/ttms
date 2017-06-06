@@ -2,9 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Seat</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src=".././lib/jquery-3.1.1.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/seat.css">
 </head>
+
+<script>
+    window.onload = function () {
+        var data = sessionStorage.getItem('user');
+        if (data) {
+            document.getElementById("user").innerHTML = data;
+        }
+
+        var studio_id = window.location.href.split("=")[1];
+        alert(studio_id)
+
+        $.ajax({
+            url: "http://123.206.67.174:18000/seat/querySeat",
+            type: "GET",
+            datatype: 'jsonp',
+            data: {
+                studio_id: studio_id
+            },
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
+            success: function (data) {
+                console.log("seat : ", data);
+            },
+            error:function (err) {
+                console.log("err ",err)
+            }
+        })
+
+    }
+
+
+</script>
+
 <body>
-$END$
+
+<nav class="navStyle">
+    <div>
+        <a class="navbar-brand" href="./home.html">首页</a>
+        <a class="navbar-brand" href="./user.html">用户管理</a>
+        <a class="navbar-brand" href="./play.html">剧目管理</a>
+        <a class="navbar-brand" href="./studio.html">影厅管理</a>
+        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand" href="./seat.html">座位管理</a>
+        <a class="navbar-brand log" href="personalCenter.html"><span>您好! </span><span id="user"></span></a>
+        <a class="navbar-brand log" href="./login.html">退出</a>
+    </div>
+</nav>
+
+<div id="seatMap">
+    <div id="screen">屏幕</div>
+</div>
+
 </body>
 </html>

@@ -18,7 +18,16 @@
     var studioInfo;
     window.onload = function () {
         var data = sessionStorage.getItem('user');
-        document.getElementById("user").innerHTML = data
+        if(data){
+            document.getElementById("user").innerHTML ="退出";
+            document.getElementById("logout").innerHTML=`您好！ ${data}`;
+            document.getElementById("user").href='./home.html';
+            document.getElementById("logout").href='./personalCenter.html';
+        }else{
+            document.getElementById("logout").innerHTML=`登录`;
+            document.getElementById("logout").href=`./login.html`;
+        }
+
 
         $.ajax({
             url: "http://123.206.67.174:18000/studio/queryStudio",
@@ -58,6 +67,24 @@
                             '<span class="glyphicon">Seat</span></a>'
                 }
             }
+        });
+
+        document.getElementById("user").addEventListener('click',function () {
+            sessionStorage.removeItem("user");
+            $.ajax({
+                url: `http://123.206.67.174:18000/user/cancellation?`,
+                type: 'get',
+                datatype: 'jsonp',
+                crossDomain: true,
+                xhrFields: {withCredentials: true},
+                success: function (data) {
+                    if(data.Detail.status){
+                        window.location.href=`home.html?status=0`;
+                    }else{
+                        window.location.href='home.html?status=1'
+                    }
+                }
+            });
         })
     };
 
@@ -133,8 +160,11 @@
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
         <a class="navbar-brand" href="#">演出计划管理</a>
         <a class="navbar-brand" href="./seat.html">座位管理</a>
-        <a class="navbar-brand log" id="user" href="personalCenter.html"></a>
-        <a class="navbar-brand log" href="./login.html">退出</a>
+        <a class="navbar-brand log" id="user"></a>
+        <a class="navbar-brand log" href="./personalCenter.html" id="logout">退出</a>
+
+
+
     </div>
 </nav>
 
