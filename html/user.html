@@ -14,9 +14,6 @@
     window.onload = function () {
 
         var data = sessionStorage.getItem('user');
-<<<<<<< HEAD
-        document.getElementById("user").innerHTML = data;
-=======
         if(data){
             document.getElementById("user").innerHTML ="退出";
             document.getElementById("logout").innerHTML=`您好！ ${data}`;
@@ -26,8 +23,6 @@
             document.getElementById("logout").innerHTML=`登录`;
             document.getElementById("logout").href=`./login.html`;
         }
-
->>>>>>> 38046103bef0c8638e99cdc6cac183b4986364c6
         $.ajax({
             url: "http://123.206.67.174:18000/user/queryUser",
             type: "GET",
