@@ -1,0 +1,17 @@
+
+*{
+    font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
+}
+
+.theme h1{
+    width:100%;
+    height:90px;
+    color: #b4a078;
+    font-size: 400%;
+    text-align: center;
+}
+
+.textStyle{
+    text-align: center;
+    font-size: 120%;
+}
