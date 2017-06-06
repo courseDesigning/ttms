@@ -53,7 +53,9 @@
                             ' id=' + data.Detail[i].studio_id + ' onclick=editStudio(this)>' +
                             '<span class="glyphicon glyphicon-edit"></span> Edit</a> ' +
                             '<a href="#" class="btn btn-danger btn-xs" onclick=deleteStudio()>' +
-                            '<span class="glyphicon glyphicon-remove">Del</span>'
+                            '<span class="glyphicon glyphicon-remove">Del</span>' +
+                            '<a href="./seat.html?studio_id=' + data.Detail[i].studio_id + '" class="btn btn-danger btn-xs">' +
+                            '<span class="glyphicon">Seat</span></a>'
                 }
             }
         })

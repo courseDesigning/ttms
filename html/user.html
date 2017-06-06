@@ -15,8 +15,6 @@
 
         var data = sessionStorage.getItem('user');
         document.getElementById("user").innerHTML = data;
-        document.getElementById("logout").innerHTML = `您好！`;
-
         $.ajax({
             url: "http://123.206.67.174:18000/user/queryUser",
             type: "GET",
