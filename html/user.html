@@ -14,15 +14,17 @@
     window.onload = function () {
 
         var data = sessionStorage.getItem('user');
-        if(data){
-            document.getElementById("user").innerHTML ="退出";
-            document.getElementById("logout").innerHTML=`您好！ ${data}`;
-            document.getElementById("user").href='./home.html';
-            document.getElementById("logout").href='./personalCenter.html';
-        }else{
-            document.getElementById("logout").innerHTML=`登录`;
-            document.getElementById("logout").href=`./login.html`;
+
+        if (data) {
+            document.getElementById("user").innerHTML = "退出";
+            document.getElementById("logout").innerHTML = `您好！ ${data}`;
+            document.getElementById("user").href = './home.html';
+            document.getElementById("logout").href = './personalCenter.html';
+        } else {
+            document.getElementById("logout").innerHTML = `登录`;
+            document.getElementById("logout").href = `./login.html`;
         }
+
         $.ajax({
             url: "http://123.206.67.174:18000/user/queryUser",
             type: "GET",
@@ -59,7 +61,7 @@
             }
         });
 
-        document.getElementById("user").addEventListener('click',function () {
+        document.getElementById("user").addEventListener('click', function () {
             sessionStorage.removeItem("user");
             $.ajax({
                 url: `http://123.206.67.174:18000/user/cancellation?`,
@@ -68,10 +70,10 @@
                 crossDomain: true,
                 xhrFields: {withCredentials: true},
                 success: function (data) {
-                    if(data.Detail.status){
-                        window.location.href=`home.html?status=0`;
-                    }else{
-                        window.location.href='home.html?status=1'
+                    if (data.Detail.status) {
+                        window.location.href = `home.html?status=0`;
+                    } else {
+                        window.location.href = 'home.html?status=1'
                     }
                 }
             });
@@ -132,13 +134,13 @@
                 console.log(data);
 
                 var tb = document.getElementById("mytable").innerHTML = '<tr> <th>ID</th> <th>姓名</th> ' +
-                        '<th>地址</th> <th>邮箱</th> <th>联系方式</th> <th class="text-center">Action</th> </tr>' +
+                        '<th>地址</th> <th>邮箱</th> <th>联系方式</th> <th>Action</th> </tr>' +
                         '<tr> <td>' + data.Detail[0].emp_id + '</td>' +
                         '<td>' + data.Detail[0].emp_name + '</td>' +
                         '<td>' + data.Detail[0].emp_id + '</td>' +
                         '<td>' + data.Detail[0].emp_email + '</td> ' +
-                        '<td>' + data.Detail.emp_tel_num + ' </td>' +
-                        '<td">Action</td> </tr>'
+                        '<td>' + data.Detail[0].emp_tel_num + ' </td>'+
+                        '<td>Action</td> </tr>'
             }
         });
     }

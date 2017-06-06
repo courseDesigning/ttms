@@ -18,14 +18,14 @@
     var studioInfo;
     window.onload = function () {
         var data = sessionStorage.getItem('user');
-        if(data){
-            document.getElementById("user").innerHTML ="退出";
-            document.getElementById("logout").innerHTML=`您好！ ${data}`;
-            document.getElementById("user").href='./home.html';
-            document.getElementById("logout").href='./personalCenter.html';
-        }else{
-            document.getElementById("logout").innerHTML=`登录`;
-            document.getElementById("logout").href=`./login.html`;
+        if (data) {
+            document.getElementById("user").innerHTML = "退出";
+            document.getElementById("logout").innerHTML = `您好！ ${data}`;
+            document.getElementById("user").href = './home.html';
+            document.getElementById("logout").href = './personalCenter.html';
+        } else {
+            document.getElementById("logout").innerHTML = `登录`;
+            document.getElementById("logout").href = `./login.html`;
         }
 
 
@@ -69,7 +69,7 @@
             }
         });
 
-        document.getElementById("user").addEventListener('click',function () {
+        document.getElementById("user").addEventListener('click', function () {
             sessionStorage.removeItem("user");
             $.ajax({
                 url: `http://123.206.67.174:18000/user/cancellation?`,
@@ -78,10 +78,10 @@
                 crossDomain: true,
                 xhrFields: {withCredentials: true},
                 success: function (data) {
-                    if(data.Detail.status){
-                        window.location.href=`home.html?status=0`;
-                    }else{
-                        window.location.href='home.html?status=1'
+                    if (data.Detail.status) {
+                        window.location.href = `home.html?status=0`;
+                    } else {
+                        window.location.href = 'home.html?status=1'
                     }
                 }
             });
@@ -136,6 +136,7 @@
                         '<th>座位列数</th> <th>状态</th> ' +
                         '<th>Action</th> </tr>' +
                         '<tr> <th>' + data.Detail[0].studio_id + '</th>' +
+                        '<th>' + data.Detail[0].studio_name + '</th>' +
                         ' <th>' + data.Detail[0].studio_row_count + '</th> ' +
                         '<th>' + data.Detail[0].studio_col_count + '</th> ' +
                         '<th>' + data.Detail[0].studio_flag + '</th> ' +
@@ -162,7 +163,6 @@
         <a class="navbar-brand" href="./seat.html">座位管理</a>
         <a class="navbar-brand log" id="user"></a>
         <a class="navbar-brand log" href="./personalCenter.html" id="logout">退出</a>
-
 
 
     </div>
