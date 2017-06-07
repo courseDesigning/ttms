@@ -254,6 +254,31 @@
         }
     }
 
+    function judgeID(element) {
+        var pattern=/[^d]/g;
+        var status=element.match(pattern);
+        if(!status){
+            alert("格式不正确，请重新输入");
+        }
+    }
+
+    function judgeName() {
+        var name = document.getElementById("name").value;
+        var pattern = /^[\u4e00-\u9fa5a-zA-Z0-9]*$/;
+        var status = name.match(pattern);
+        if(!status){
+            alert("格式不正确，请重新输入");
+        }
+    }
+
+    function judgeTime(element) {
+        var pattern=/^[0-9]$/;
+        var status=element.match(pattern);
+        if(!status){
+            alert("格式不正确，请重新输入");
+        }
+    }
+
 
 </script>
 <body>

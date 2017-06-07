@@ -278,6 +278,56 @@
         });
     }
 
+    function judgeName() {
+        var name = document.getElementById("name").value;
+        var pattern = /^[\u4e00-\u9fa5a-zA-Z0-9]*$/;
+        var status = name.match(pattern);
+        if(!status){
+            alert("格式不正确，请重新输入");
+        }
+    }
+
+    function judgeStar() {
+        var star=document.getElementById("star").value;
+        var pattern=/[\u4e00-\u9fa5a-zA-Z0-9]*!/;
+        var status = name.match(pattern);
+        if(!status){
+            alert("格式不正确，请重新输入！");
+        }
+    }
+
+    function judgeRelease() {
+        var release=document.getElementById("release").value;
+        var pattern=/^2017年(0?[1-9]|1[0-2])月((0?[1-9])|((1|2)[0-9])|30|31)日$/;
+        if(!release.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgeHour() {
+        var houlong=document.getElementById("hourlong").value;
+        var pattern=/^([0-9]*)分钟$/;
+        if(!houlong.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgeType() {
+        var type=document.getElementById("type").value;
+        var pattern=/^[\u4e00-\u9fa5]*$/;
+        if(!type.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
+    function judgePrice() {
+        var price=document.getElementById("price").value;
+        var pattern=/^[1-9]d*$/;
+        if(!price.match(pattern)){
+            alert("格式不正确，请重新输入！")
+        }
+    }
+
 </script>
 <body>
 
@@ -324,27 +374,27 @@
                     </div>
                     <div class="inputPosition">
                         <label>影片名称:</label>
-                        <input type="text" class="btn btn-default" id="name" disabled>
+                        <input type="text" class="btn btn-default" id="name"  disabled onblur=judgeName()>
                     </div>
                     <div class="inputPosition">
                         <label>影片主演:</label>
-                        <input type="text" class="btn btn-default" id="star">
+                        <input type="text" class="btn btn-default" id="star" onblur=judgeStar()>
                     </div>
                     <div class="inputPosition">
                         <label>上映时间:</label>
-                        <input type="text" class="btn btn-default" id="release">
+                        <input type="text" class="btn btn-default" id="release" onblur=judgeRelease()>
                     </div>
                     <div class="inputPosition">
                         <label>影片时长:</label>
-                        <input type="text" class="btn btn-default" id="hourlong">
+                        <input type="text" class="btn btn-default" id="hourlong" onblur=judgeHour()>
                     </div>
                     <div class="inputPosition">
                         <label>影片类型:</label>
-                        <input type="text" class="btn btn-default" id="type">
+                        <input type="text" class="btn btn-default" id="type" onblur="judgeType()">
                     </div>
                     <div class="inputPosition">
                         <label>影片价格:</label>
-                        <input type="text" class="btn btn-default" id="price">
+                        <input type="text" class="btn btn-default" id="price" onblur=judgePrice()>
                     </div>
                     <div class="inputPosition">
                         <label>影片简介:</label>
