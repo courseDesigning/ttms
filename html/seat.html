@@ -8,9 +8,13 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/seat.css">
+    <link rel="stylesheet" href="../css/jq22.css">
 </head>
 
 <script>
+
+    var seat;
+
     window.onload = function () {
         var data = sessionStorage.getItem('user');
         if (data) {
@@ -18,7 +22,6 @@
         }
 
         var studio_id = window.location.href.split("=")[1];
-        alert(studio_id)
 
         $.ajax({
             url: "http://123.206.67.174:18000/seat/querySeat",
@@ -33,14 +36,77 @@
             },
             success: function (data) {
                 console.log("seat : ", data);
+
+                seat = data;
+
+                var seatList = data.Detail;
+
+                for (var i = 0; i < seatList[seatList.length - 1].seat_row; i++) {
+
+                    document.getElementById('seat').innerHTML += i + 1 + ' ';
+
+                    for (var j = 0; j < seatList.length; j++) {
+
+                        var seatCol = parseInt(seatList[j].seat_column) + 1;
+
+                        if (seatList[j].seat_row === i && seatList[j].seat_status === 1) {
+                            document.getElementById('seat').innerHTML += '<button class="seatCol btn-default"  ' +
+                                    ' onclick=getRowCol(' + seatList[j].seat_id + ')>' + seatCol + '</button>'
+                        } else if(seatList[j].seat_row === i && seatList[j].seat_status === 0){
+                            document.getElementById('seat').innerHTML += '<button class="badSeat btn-default"  ' +
+                                    ' onclick=getRowCol(' + seatList[j].seat_id + ')>' + seatCol + '</button>'
+                        }
+                    }
+
+                    document.getElementById('seat').innerHTML += '<br>'
+                }
             },
-            error:function (err) {
-                console.log("err ",err)
+            error: function (err) {
+                console.log("err ", err)
             }
         })
+    };
 
+    function getRowCol(a) {
+
+        for (var j = 0; j < seat.Detail.length; j++) {
+            if (seat.Detail[j].seat_id === a) {
+
+                var status;
+
+                if(seat.Detail[j].seat_status === 1){
+                    status = 0;
+                }else{
+                    status = 1;
+                }
+
+                $.ajax({
+                    url: "http://123.206.67.174:18000/seat/updataSeat",
+                    type: "GET",
+                    datatype: 'jsonp',
+                    data: {
+                        seat_list: [
+                            seat.Detail[j].seat_id,
+                            seat.Detail[j].seat_row,
+                            seat.Detail[j].seat_column,
+                            status
+                        ]
+                    },
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: 'true'
+                    },
+                    success: function (data) {
+                        console.log("udate:", data);
+                        location.reload();
+                    },
+                    error: function (err) {
+                        console.log("err: ", err)
+                    }
+                })
+            }
+        }
     }
-
 
 </script>
 
@@ -59,9 +125,29 @@
     </div>
 </nav>
 
-<div id="seatMap">
-    <div id="screen">屏幕</div>
+<div class="container">
+    <div class="demo clearfix">
+        <div id="seat_area">
+            <div class="front">屏幕</div>
+            <div class="booking_area">
+                <div id="legend">
+                    <div>
+                        <button class="seatCol"></button>
+                        <span>正常</span>
+                    </div>
+                    <div>
+                        <button class="seatCol badSeat"></button>
+                        <span>损坏</span>
+                    </div>
+                </div>
+            </div>
+            <div id="seat"></div>
+        </div>
+    </div>
 </div>
+
+<script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/jquery.seat-charts.min.js"></script>
 
 </body>
 </html>

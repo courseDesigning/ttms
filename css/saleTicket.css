@@ -1,0 +1,152 @@
+*{
+    font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
+}
+
+.playTheme h1{
+    width:100%;
+    height:90px;
+    color: #b4a078;
+    font-size: 400%;
+    text-align: center;
+}
+
+.textStyle{
+    text-align: center;
+    font-size: 120%;
+}
+
+.search{
+    margin-bottom: 30px;
+}
+
+.inputStyle{
+    height:45px;
+    color: black;
+}
+
+.fontColor{
+    color: black;
+}
+
+.addStyle{
+    margin-left: 50px;
+}
+
+.left{
+    margin-top: 20px;
+    height:500px;
+    width:60%;
+    border-right: 3px solid #d5d5d5;
+
+}
+#imagePosition{
+
+    height: 520px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.right{
+    float: right;
+    height:520px;
+    width:40%;
+    margin-top: 100px;
+}
+
+#information{
+    float: right;
+}
+
+.myInput{
+    margin-left: 5px;
+    margin-bottom: 20px;
+    height: 45px;
+}
+
+.goback{
+    margin-left: 130px;
+}
+
+.tofloat{
+    margin-left: 50px;
+}
+
+
+/*.imageSize{*/
+    /*width:200px;*/
+    /*height:200px;*/
+    /*border-radius: 5%;*/
+    /*margin-left: 50px;*/
+    /*margin-top: 50px;*/
+/*}*/
+
+.tablePosition{
+    display: inline-block;
+    border: 2px groove #b4a078;
+    float: right;
+    margin-right: 120px;
+    border-radius: 10px;
+    width:1000px;
+    height:300px;
+    margin-bottom: 20px;
+}
+
+.unit{
+    margin-top:40px;
+}
+
+.unitTable{
+    margin-top: 20px;
+    margin-left: 300px;
+}
+
+td{
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.tdStyle{
+    padding: 15px;
+}
+
+.buttonPositiion{
+    float:right;
+    margin-left:60px
+}
+
+.inputPosition{
+    margin-left: 25%;
+    margin-bottom: 10px;
+}
+
+.saleButton{
+    margin-left: 100px;
+}
+
+
+.imagePosition{
+    display: inline-block;
+    /*border-radius: 1300px;*/
+    float:left;
+    margin-bottom: 20px;
+    border-radius: 5%;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.imagePosition{
+    width: 250px;
+    height: 250px;
+
+    overflow: hidden;
+}
+
+.imagePosition img{
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    transition: all 0.6s;
+}
+.imagePosition img:hover{
+    transform: scale(1.4);
+}
