@@ -18,7 +18,13 @@
     window.onload = function () {
         var data = sessionStorage.getItem('user');
         if (data) {
-            document.getElementById("user").innerHTML = data;
+            document.getElementById("user").innerHTML = "退出";
+            document.getElementById("logout").innerHTML = `您好！ ${data}`;
+            document.getElementById("user").href = './home.html';
+            document.getElementById("logout").href = './personalCenter.html';
+        } else {
+            document.getElementById("logout").innerHTML = `登录`;
+            document.getElementById("logout").href = `./login.html`;
         }
 
         var studio_id = window.location.href.split("=")[1];
@@ -52,7 +58,7 @@
                         if (seatList[j].seat_row === i && seatList[j].seat_status === 1) {
                             document.getElementById('seat').innerHTML += '<button class="seatCol btn-default"  ' +
                                     ' onclick=getRowCol(' + seatList[j].seat_id + ')>' + seatCol + '</button>'
-                        } else if(seatList[j].seat_row === i && seatList[j].seat_status === 0){
+                        } else if (seatList[j].seat_row === i && seatList[j].seat_status === 0) {
                             document.getElementById('seat').innerHTML += '<button class="badSeat btn-default"  ' +
                                     ' onclick=getRowCol(' + seatList[j].seat_id + ')>' + seatCol + '</button>'
                         }
@@ -64,8 +70,28 @@
             error: function (err) {
                 console.log("err ", err)
             }
-        })
+        });
+
+
+        document.getElementById("user").addEventListener('click', function () {
+            sessionStorage.removeItem("user");
+            $.ajax({
+                url: `http://123.206.67.174:18000/user/cancellation?`,
+                type: 'get',
+                datatype: 'jsonp',
+                crossDomain: true,
+                xhrFields: {withCredentials: true},
+                success: function (data) {
+                    if (data.Detail.status) {
+                        window.location.href = `home.html?status=0`;
+                    } else {
+                        window.location.href = 'home.html?status=1'
+                    }
+                }
+            });
+        });
     };
+
 
     function getRowCol(a) {
 
@@ -74,9 +100,9 @@
 
                 var status;
 
-                if(seat.Detail[j].seat_status === 1){
+                if (seat.Detail[j].seat_status === 1) {
                     status = 0;
-                }else{
+                } else {
                     status = 1;
                 }
 
@@ -118,10 +144,10 @@
         <a class="navbar-brand" href="./user.html">用户管理</a>
         <a class="navbar-brand" href="./play.html">剧目管理</a>
         <a class="navbar-brand" href="./studio.html">影厅管理</a>
-        <a class="navbar-brand" href="#">演出计划管理</a>
+        <a class="navbar-brand" href="./schedule.html">演出计划管理</a>
         <a class="navbar-brand" href="./seat.html">座位管理</a>
-        <a class="navbar-brand log" href="personalCenter.html"><span>您好! </span><span id="user"></span></a>
-        <a class="navbar-brand log" href="./login.html">退出</a>
+        <a class="navbar-brand log" id="user"></a>
+        <a class="navbar-brand log" href="./personalCenter.html" id="logout">退出</a>
     </div>
 </nav>
 

@@ -1,17 +1,52 @@
 
-*{
-    font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
+* {
+    font-family: "AR PL UKai CN", "Noto Sans CJK JP Bold";
 }
 
-.theme h1{
-    width:100%;
-    height:90px;
+.theme h1 {
+    width: 100%;
+    height: 90px;
     color: #b4a078;
     font-size: 400%;
     text-align: center;
 }
 
-.textStyle{
+.textStyle {
     text-align: center;
     font-size: 120%;
+}
+
+.inputStyle{
+    height:45px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.infoButton{
+    background-color:  #d9edf7 !important;
+}
+
+.dangerButton{
+    background-color: #f2dede !important;
+}
+
+.inputPosition{
+    margin-left: 25%;
+    margin-bottom: 10px;
+}
+
+#addWarning {
+    color: red;
+    font-size: 130%;
+}
+
+.selectPosition{
+    margin-left: 320px;
+    float:left;
+}
+
+.selectSize{
+    width:120px;
+    display: inline;
+    height: 44px;
 }

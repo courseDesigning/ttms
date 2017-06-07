@@ -32,13 +32,11 @@
             crossDomain: true,
             xhrFields: {withCredentials: true},
             success: function (data) {
-                console.log("play++++", data);
                 for (var i = 0; i < data.Detail.length; i++) {
-                    console.log("000000000000");
                     var displayInfo = document.getElementById("display");
                     displayInfo.innerHTML += `
                         <div class="unit" id=${data.Detail[i].film_id}>
-        <div class="imagePosition">
+        <div class="imagePosition" id="image">
             <img src=${data.Detail[i].film_img} class="imageSize">
         </div>
         <div class="tablePosition">
@@ -86,20 +84,73 @@
         });
         document.getElementById("searchPlayByName").addEventListener("click", function () {
             var filmName = document.getElementById('filmName').value;
-            console.log("filmName", filmName);
-            if (filmName) {
-                window.location.assign(encodeURI(`playInformation.html?Detail=${filmName}`));
-            } else {
-                console.log("dadada");
-                document.getElementById("searchWarning").innerHTML = "影片名称不能为空!"
-            }
-
+            var displayInfo = document.getElementById("display");
+            displayInfo.innerHTML = ``;
+            $.ajax({
+                url: `http://123.206.67.174:18000/film/querys`,
+                type: 'get',
+                datatype: 'jsonp',
+                data: {
+                    film_name: filmName
+                },
+                crossDomain: true,
+                xhrFields: {withCredentials: true},
+                success: function (data) {
+                    console.log("Playdata+++++", data);
+                    for (var i = 0; i < data.Detail.length; i++) {
+                        displayInfo.innerHTML += `
+                        <div class="unit" id=${data.Detail[i].film_id}>
+        <div class="imagePosition">
+            <img src=${data.Detail[i].film_img} class="imageSize">
+        </div>
+        <div class="tablePosition">
+            <table class="unitTable">
+                <tr>
+                    <th class="tdStyle">影片ID:</th>
+                    <td id="film_id">${data.Detail[i].film_id}</td>
+                    <th style="padding-left: 30px"> 影片详情:</th>
+                    <td id="description" rowspan="6">
+                      ${data.Detail[i].film_information}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="margin-right: 50px">影片名称:</th>
+                    <td id="film_name">${data.Detail[i].film_name}</td>
+                </tr>
+                <tr>
+                    <th>影片主演:</th>
+                    <td id="film_star">${data.Detail[i].film_tostar}</td>
+                </tr>
+                <tr>
+                    <th>上映时间:</th>
+                    <td id="film_release">${data.Detail[i].film_release}</td>
+                </tr>
+                <tr>
+                    <th>播放时长:</th>
+                    <td id="film_hour">${data.Detail[i].film_hourlong}</td>
+                </tr>
+                <tr>
+                    <th>影片类型:</th>
+                    <td id="film_type">${data.Detail[i].film_type}</td>
+                </tr>
+                <tr>
+                    <th>影片价格:</th>
+                    <td id="film_price">${data.Detail[i].film_price}</td>
+                    <td><button class="buttonPositiion btn btn-default infoButton"
+                     name=${data.Detail[i].film_name}  data-toggle="modal" data-target="#onlyModal" onclick=modifyFilm(this) >修改</button></td>
+                    <td><button class=" btn btn-default dangerButton" style="margin-left: 50px"
+                    name=${data.Detail[i].film_id} onclick=deleteFilm(this)>删除</button></td>
+                </tr>
+            </table>
+        </div></div>`;
+                    }
+                }
+            });
         });
 
         document.getElementById("addFilm").addEventListener("click", function () {
             window.location.href = 'addPlay.html';
         });
-
 
         document.getElementById("user").addEventListener('click', function () {
             sessionStorage.removeItem("user");
@@ -119,6 +170,25 @@
             });
         });
 
+     /*   document.getElementById("onSubmit").addEventListener("click", function () {
+            let file = document.getElementById("upload");
+            let formData = new FormData(file);
+            formData.append("film_id",'10');
+            $.ajax({
+                url: `http://123.206.67.174:18000/film/filmImage?`,
+                type: 'POST',
+                datatype: 'jsonp',
+                data: formData,
+                crossDomain: true,
+                xhrFields: {withCredentials: true},
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log("upload", data);
+                }
+            })
+        });
+*/
         document.getElementById("submit").addEventListener("click", function () {
             var name = document.getElementById("name").value;
             var star = document.getElementById("star").value;
@@ -126,6 +196,7 @@
             var hourlong = document.getElementById("hourlong").value;
             var type = document.getElementById("type").value;
             var price = document.getElementById("price").value;
+            var image = document.getElementById("image").value;
             var film_information = document.getElementById("film_information").value;
             console.log(film_information);
             $.ajax({
@@ -144,12 +215,12 @@
                     film_information: film_information
                 },
                 success: function (data) {
-                     if (data.Detail.status) {
-                     document.getElementById("addWarning").innerHTML = "修改成功！";
-                     window.location.href = 'play.html';
-                     } else {
-                     document.getElementById("addWarning").innerHTML = "修改失败！";
-                     }
+                    if (data.Detail.status) {
+                        document.getElementById("addWarning").innerHTML = "修改成功！";
+                        window.location.href = 'play.html';
+                    } else {
+                        document.getElementById("addWarning").innerHTML = "修改失败！";
+                    }
                 },
                 error: function (error) {
                     console.log("response error");
@@ -224,6 +295,10 @@
 <div class="playTheme">
     <h1 class="textStyle">剧目管理</h1>
 </div>
+<!--<form method="post" enctype="multipart/form-data" id="upload">
+    <input type="file" id="myInput">
+    <button type="submit" id="onSubmit">提交</button>
+</form>-->
 <div style="margin-left: 45%" id="searchWarning">
 </div>
 <div class="input-group col-md-4 col-md-offset-4 search">
@@ -238,12 +313,12 @@
 </div>
 <div class="modal fade" id="onlyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <form class="modal-content" method="post" enctype="multipart/form-data">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel" style="text-align: center">影片信息</h4>
             </div>
             <div class="modal-body">
-                <form class="form-inline">
+                <div class="form-inline">
                     <div class="inputPosition">
                         <span id="addWarning"></span>
                     </div>
@@ -275,14 +350,18 @@
                         <label>影片简介:</label>
                         <textarea type="text" class="btn btn-default" id="film_information"></textarea>
                     </div>
-                </form>
+                    <div class="inputPosition">
+                        <label>上传图片:</label>
+                        <input type="file" class="btn btn-default" id="film_image">
+                    </div>
+                </div>
             </div>
             <div class="modal-footer" style="text-align: center">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-right: 20px">返回
                 </button>
                 <button type="button" class="btn infoButton" id="submit">提交</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 </body>
