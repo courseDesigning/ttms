@@ -39,3 +39,14 @@
     color: red;
     font-size: 130%;
 }
+
+.selectPosition{
+    margin-left: 320px;
+    float:left;
+}
+
+.selectSize{
+    width:120px;
+    display: inline;
+    height: 44px;
+}

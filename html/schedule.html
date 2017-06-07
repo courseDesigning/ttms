@@ -22,7 +22,7 @@
             document.getElementById("logout").href = `./login.html`;
         }
 
-        document.getElementById("user").addEventListener("click",function () {
+        document.getElementById("user").addEventListener("click", function () {
             sessionStorage.removeItem("user");
             $.ajax({
                 url: `http://123.206.67.174:18000/user/cancellation?`,
@@ -31,10 +31,10 @@
                 crossDomain: true,
                 xhrFields: {withCredentials: true},
                 success: function (data) {
-                    if(data.Detail.status){
-                        window.location.href=`home.html?status=0`;
-                    }else{
-                        window.location.href='home.html?status=1'
+                    if (data.Detail.status) {
+                        window.location.href = `home.html?status=0`;
+                    } else {
+                        window.location.href = 'home.html?status=1'
                     }
                 }
             });
@@ -51,39 +51,161 @@
                     var object = data.Detail[i];
                     var modify = `${object.play_id}_${object.studio_id}_${object.play_start}_${object.play_end}_${object.film_id}_${object.film_name}`;
                     var displayInfo = document.getElementById("displayInfo");
-                    var nextRow = displayInfo.insertRow();
-                    var td_1 = nextRow.insertCell();
-                    td_1.innerHTML = `${object.play_id}`;
-
-                    var td_2 = nextRow.insertCell();
-                    td_2.innerHTML = `${object.film_id}`;
-
-                    var td_3 = nextRow.insertCell();
-                    td_3.innerHTML = `${object.film_name}`;
-
-                    var td_4 = nextRow.insertCell();
-                    td_4.innerHTML = `${object.studio_id}`;
-
-                    var td_5 = nextRow.insertCell();
-                    td_5.innerHTML = `${object.play_start}`;
-
-                    var td_6 = nextRow.insertCell();
-                    td_6.innerHTML = `${object.play_end}`;
-
-                    var td_7 = nextRow.insertCell();
-                    td_7.innerHTML = `<input type="button" value="修改" name=${modify}  data-toggle="modal" data-target="#secondModal"
-                 class="infoButton fontColor btn btn-default"  onclick=modifyPlay(this)>`;
-
-                    var td_8 = nextRow.insertCell();
-                    td_8.innerHTML = `<button type="button" type="button"  name=${object.play_id}
-             class="dangerButton fontColor btn btn-default"   onclick=deletePlay(this)>删除</button>`;
-
+                    displayInfo.innerHTML += `<tr>
+                              <td>${object.play_id}</td>
+                              <td>${object.film_id}</td>
+                              <td>${object.film_name}</td>
+                              <td>${object.studio_id}</td>
+                              <td>${object.play_start}</td>
+                              <td>${object.play_end}</td>
+                              <td><input type="button" value="修改" name=${modify}  data-toggle="modal" data-target="#secondModal"
+                 class="infoButton fontColor btn btn-default"  onclick=modifyPlay(this)></td>
+                              <td><button type="button" type="button"  name=${object.play_id}
+             class="dangerButton fontColor btn btn-default"   onclick=deletePlay(this)>删除</button></td>
+                           </tr>`;
                 }
             }
         });
+    };
 
-        document.getElementById("searchScheduleById").addEventListener("click", function () {
-            var scheduleId = document.getElementById("searchScheduleById").value;
+    function modifyPlay(object) {
+        var newobject = $(object).attr("name");
+        var valueArray = newobject.split("_");
+        //play_id,studio_id,play_start,play_end,film_id,film_name
+        $('#play').attr("value", `${valueArray[0]}`);
+        $('#studio').attr("value", `${valueArray[1]}`);
+        $('#start').attr("value", `${valueArray[2]}`);
+        $('#end').attr("value", `${valueArray[3]}`);
+        $('#film').attr("value", `${valueArray[4]}`);
+        $('#name').attr("value", `${valueArray[5]}`);
+    }
+
+
+    function deletePlay(object) {
+        var play_id = $(object).attr("name");
+        $.ajax({
+            url: `http://123.206.67.174:18000/play/deletePlay`,
+            type: 'get',
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {withCredentials: true},
+            data: {
+                play_id: play_id
+            },
+            success: function (data) {
+                if (data.Detail.status) {
+                    alert('删除成功！');
+                    window.location.href = 'schedule.html'
+                } else {
+                    alert("删除失败！");
+                }
+            }
+        });
+    }
+
+    function submitAdd() {
+        var film_id = document.getElementById("film_id").value;
+        var studio_id = document.getElementById("studio_id").value;
+        var film_name = document.getElementById("film_name").value;
+        var play_start = document.getElementById("play_start").value;
+        var play_end = document.getElementById("play_end").value;
+        console.log("submit");
+        $.ajax({
+            url: `http://123.206.67.174:18000/play/addPlay`,
+            type: 'get',
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {withCredentials: true},
+            data: {
+                film_id: film_id,
+                studio_id: studio_id,
+                film_name: film_name,
+                play_start: play_start,
+                play_end: play_end
+            },
+            success: function (data) {
+                console.log("play++++", data);
+                if (data.Detail.status) {
+                    document.getElementById("addWarning").innerHTML = "添加成功！";
+                    window.location.href = `schedule.html`;
+                } else {
+                    document.getElementById("addWarning").innerHTML = "添加失败！";
+                }
+            }
+        });
+    }
+
+    function submitModify() {
+        var film_id = document.getElementById("film").value;
+        var studio_id = document.getElementById("studio").value;
+        var film_name = document.getElementById("name").value;
+        var play_start = document.getElementById("start").value;
+        var play_end = document.getElementById("end").value;
+        var play_id = document.getElementById("play").value;
+
+        $.ajax({
+            url: `http://123.206.67.174:18000/play/updataPlay`,
+            type: 'get',
+            datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {withCredentials: true},
+            data: {
+                film_id: film_id,
+                studio_id: studio_id,
+                film_name: film_name,
+                play_start: play_start,
+                play_end: play_end,
+                play_id: play_id
+            },
+            success: function (data) {
+                if (data.Detail.status) {
+                    document.getElementById("addWarning").innerHTML = "修改成功！";
+                    window.location.href = `schedule.html`;
+                } else {
+                    document.getElementById("addWarning").innerHTML = "修改失败！";
+                }
+            }
+        });
+    }
+
+    function concatInformation(information) {
+        var displayInfo = document.getElementById("displayInfo");
+        displayInfo.innerHTML = '';
+        displayInfo.innerHTML=` <table class="table table-bordered textStyle" id="displayInfo">
+        <tr class="active">
+            <th class="textStyle">演出计划ID</th>
+            <th class="textStyle">影片ID</th>
+            <th class="textStyle">影片名称</th>
+            <th class="textStyle">影厅ID</th>
+            <th class="textStyle">放映开始时间</th>
+            <th class="textStyle">放映结束时间</th>
+            <th class="textStyle" colspan="3">操作</th>
+        </tr>
+    </table>`;
+        for (var i = 0; i < information.Detail.length; i++) {
+            var object = information.Detail[i];
+            var modify = `${object.play_id}_${object.studio_id}_${object.play_start}_${object.play_end}_${object.film_id}_${object.film_name}`;
+            displayInfo.innerHTML += `<tr>
+                              <td>${object.play_id}</td>
+                              <td>${object.film_id}</td>
+                              <td>${object.film_name}</td>
+                              <td>${object.studio_id}</td>
+                              <td>${object.play_start}</td>
+                              <td>${object.play_end}</td>
+                              <td><input type="button" value="修改" name=${modify}  data-toggle="modal" data-target="#secondModal"
+                 class="infoButton fontColor btn btn-default"  onclick=modifyPlay(this)></td>
+                              <td><button type="button" type="button"  name=${object.play_id}
+             class="dangerButton fontColor btn btn-default"   onclick=deletePlay(this)>删除</button></td>
+                           </tr>`;
+        }
+    }
+
+    function searchSchedule() {
+        var selector = $('#selector').val();
+        var value = $(`#search`).val();
+        console.log("selector=====>",selector);
+        console.log("value======>",value);
+        if (selector === `演出计划ID`&& value) {
             $.ajax({
                 url: `http://123.206.67.174:18000/play/queryPlay`,
                 type: 'get',
@@ -91,113 +213,47 @@
                 crossDomain: true,
                 xhrFields: {withCredentials: true},
                 data: {
-                    play_id: scheduleId
+                    play_id: value
                 },
                 success: function (data) {
-                    console.log("play++++", data);
+                    console.log(data);
+                    concatInformation(data);
                 }
+
             });
-        });
-    };
-        function modifyPlay(object) {
-            var newobject = $(object).attr("name");
-            var valueArray = newobject.split("_");
-            //play_id,studio_id,play_start,play_end,film_id,film_name
-            $('#play').attr("value", `${valueArray[0]}`);
-            $('#studio').attr("value", `${valueArray[1]}`);
-            $('#start').attr("value", `${valueArray[2]}`);
-            $('#end').attr("value", `${valueArray[3]}`);
-            $('#film').attr("value", `${valueArray[4]}`);
-            $('#name').attr("value", `${valueArray[5]}`);
-        }
-
-
-        function deletePlay(object) {
-            var play_id = $(object).attr("name");
+        } else if (selector === `演出厅ID` && value) {
             $.ajax({
-                url: `http://123.206.67.174:18000/play/deletePlay`,
+                url: `http://123.206.67.174:18000/play/queryPlay`,
                 type: 'get',
                 datatype: 'jsonp',
                 crossDomain: true,
                 xhrFields: {withCredentials: true},
                 data: {
-                    play_id: play_id
+                    studio_id: value
                 },
                 success: function (data) {
-                    if (data.Detail.status) {
-                        alert('删除成功！');
-                        window.location.href = 'schedule.html'
-                    } else {
-                        alert("删除失败！");
-                    }
+                    console.log(data);
+                    concatInformation(data);
                 }
             });
-        }
-
-        function submitAdd() {
-            var film_id = document.getElementById("film_id").value;
-            var studio_id = document.getElementById("studio_id").value;
-            var film_name = document.getElementById("film_name").value;
-            var play_start = document.getElementById("play_start").value;
-            var play_end = document.getElementById("play_end").value;
-            console.log("submit");
+        } else if (selector === `影片ID` && value) {
             $.ajax({
-                url: `http://123.206.67.174:18000/play/addPlay`,
+                url: `http://123.206.67.174:18000/play/queryPlay`,
                 type: 'get',
                 datatype: 'jsonp',
                 crossDomain: true,
                 xhrFields: {withCredentials: true},
                 data: {
-                    film_id: film_id,
-                    studio_id: studio_id,
-                    film_name: film_name,
-                    play_start: play_start,
-                    play_end: play_end
+                    film_id: value
                 },
                 success: function (data) {
-                    console.log("play++++", data);
-                    if (data.Detail.status) {
-                        document.getElementById("addWarning").innerHTML = "添加成功！";
-                        window.location.href = `schedule.html`;
-                    } else {
-                        document.getElementById("addWarning").innerHTML = "添加失败！";
-                    }
+                    console.log(data);
+                    concatInformation(data);
                 }
             });
         }
+    }
 
-        function submitModify() {
-            var film_id = document.getElementById("film").value;
-            var studio_id = document.getElementById("studio").value;
-            var film_name = document.getElementById("name").value;
-            var play_start = document.getElementById("start").value;
-            var play_end = document.getElementById("end").value;
-            var play_id = document.getElementById("play").value;
-
-            $.ajax({
-                url: `http://123.206.67.174:18000/play/updataPlay`,
-                type: 'get',
-                datatype: 'jsonp',
-                crossDomain: true,
-                xhrFields: {withCredentials: true},
-                data: {
-                    film_id: film_id,
-                    studio_id: studio_id,
-                    film_name: film_name,
-                    play_start: play_start,
-                    play_end: play_end,
-                    play_id: play_id
-                },
-                success: function (data) {
-                    if (data.Detail.status) {
-                        document.getElementById("addWarning").innerHTML = "修改成功！";
-                        window.location.href = `schedule.html`;
-                    } else {
-                        document.getElementById("addWarning").innerHTML = "修改失败！";
-                    }
-                }
-            });
-        }
 
 </script>
 <body>
@@ -217,10 +273,17 @@
 <div class="theme">
     <h1 class="textStyle">演出计划管理</h1>
 </div>
+<div class="selectPosition">
+    <select class="form-control col-md-6 col-md-offset-3 selectSize" id="selector">
+        <option id="searchByPlayId">演出计划ID</option>
+        <option id="searchByStudioId">演出厅ID</option>
+        <option id="searchByFilmId">影片ID</option>
+    </select>
+</div>
 <div class="input-group col-md-4 col-md-offset-4 search">
-    <input type="text" class="form-control inputStyle" placeholder="请输入剧目名称" id="filmName"/>
+    <input type="text" class="form-control inputStyle" placeholder="请输入剧目名称"  style="display: inline" id="search"/>
     <span class="input-group-btn">
-        <button class="btn btn-default btn-search inputStyle infoButton" name="searchScheduleById">查找</button>
+        <button class="btn btn-default btn-search inputStyle infoButton" onclick=searchSchedule()>查找</button>
          <button class="btn btn-default btn-search inputStyle infoButton" id="addSchedule"
                  data-toggle="modal" data-target="#firstModal" style="margin-left: 5px">添加</button>
     </span>
@@ -324,7 +387,6 @@
         </div>
     </div>
 </div>
-
 
 
 </body>
