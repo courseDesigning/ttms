@@ -116,6 +116,8 @@
             xhrFields: {withCredentials: true},
             success: function (data) {
 
+                console.log("saleTicket:" ,data);
+
                 var myurl = './saleTicketSeat.html?name=' +name+ '&time='
                         + data.Detail[0].film_release + '&price=' + data.Detail[0].film_price + '';
                 window.location.assign(encodeURI(myurl))
