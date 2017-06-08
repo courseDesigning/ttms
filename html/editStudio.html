@@ -27,11 +27,11 @@
                 console.log("studio: ", data);
 
                 document.getElementById("updateStudio").innerHTML = "<br><span>演出厅</span><input id='id' type='text' class='form-control' value=" + data.Detail[0].studio_id + "><br>"
-                        + "<span>座位行数</span><input id='name' type='text' class='form-control' value=" + data.Detail[0].studio_name + "><br>"
+                        + "<span>演出厅名称</span><input id='name' type='text' class='form-control' value=" + data.Detail[0].studio_name + "><br>"
                         + "<span>座位行数</span><input id='row' type='text' class='form-control' value=" + data.Detail[0].studio_row_count + "><br>"
                         + "<span>座位列数</span><input id='col' type='text' class='form-control' value=" + data.Detail[0].studio_col_count + "><br>"
                         + "<span>状态</span><input id='status' type='text' class='form-control' value=" + data.Detail[0].studio_flag + "><br>"
-                        + " <button class='btn  btn-primary btn-block btn-signi' onclick=updateUser()>修改</button><br>"
+                        + " <button class='btn  btn-primary btn-block btn-signi' onclick=updateUser()>修改</button><span id='warning'></span><br>"
             }
         })
     };
@@ -49,6 +49,10 @@
             url: "http://123.206.67.174:18000/studio/updataStudio",
             type: "GET",
             datatype: 'jsonp',
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: 'true'
+            },
             data: {
                 studio_id: document.getElementById("id").value,
                 studio_name: document.getElementById("name").value,
@@ -56,13 +60,13 @@
                 studio_col_count: document.getElementById("col").value,
                 studio_flag: document.getElementById("status").value,
             },
-            crossDomain: true,
-            xhrFields: {
-                withCredentials: 'true'
-            },
             success: function (data) {
-                console.log("updateStudio: ", data);
-                window.location.href = './studio.html'
+                console.log("updateStudio: ", data.Detail.status);
+                if (data.Detail.status === 0) {
+                    document.getElementById("warning").innerHTML = '修改失败'
+                } else {
+                    window.location.href = './studio.html'
+                }
             }
         })
     }

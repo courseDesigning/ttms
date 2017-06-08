@@ -59,10 +59,10 @@
                     td4.innerText = data.Detail[i].studio_row_count;
                     td5.innerText = data.Detail[i].studio_flag;
                     td6.innerHTML = '<td class="text-center"><a class="btn btn-info btn-xs"' +
-                            ' id=' + data.Detail[i].studio_id + ' onclick=editStudio(this)>' +
+                            ' onclick="editStudio(this)" name=' + data.Detail[i].studio_id + '>' +
                             '<span class="glyphicon glyphicon-edit"></span> Edit</a> ' +
-                            '<a href="#" class="btn btn-danger btn-xs" onclick=deleteStudio()>' +
-                            '<span class="glyphicon glyphicon-remove">Del</span>' +
+                            '<a href="#" class="btn btn-danger btn-xs" onclick="deleteStudio(this)" name=' + data.Detail[i].studio_id + '>' +
+                            '<span class="glyphicon glyphicon-remove">Del</span></a>' +
                             '<a href="./seat.html?studio_id=' + data.Detail[i].studio_id + '" class="btn btn-danger btn-xs">' +
                             '<span class="glyphicon">Seat</span></a>'
                 }
@@ -92,27 +92,29 @@
 
     function editStudio(a) {
 //        $("tr").click(function () {
-        id = $(a).attr("id");
-        console.log("id:", studioInfo.Detail[id].studio_id);
+        id = $(a).attr("name");
 //        });
 
-        $("a").attr("href", "editStudio.html?studio_id=" + studioInfo.Detail[id].studio_id);
+        $("a").attr("href", "editStudio.html?studio_id=" + id);
     }
 
-    function deleteStudio() {
+    function deleteStudio(a) {
+        id = $(a).attr("name");
+        alert(id);
+
         $.ajax({
                     url: "http://123.206.67.174:18000/studio/deleteStudio",
                     type: "get",
                     datatype: 'jsonp',
                     data: {
-                        studio_id: studioInfo.Detail[id].studio_id
+                        studio_id: id
                     },
                     crossDomain: true,
                     xhrFields: {
                         withCredentials: 'true'
                     },
                     success: function (data) {
-                        window.location.hred = './studio.html'
+                        window.location.href = './studio.html'
                     }
                 }
         )
