@@ -171,7 +171,7 @@
         });
 
         document.getElementById("submit").addEventListener("click", function () {
-           /* var name = document.getElementById("name").value;
+            var name = document.getElementById("name").value;
             var star = document.getElementById("star").value;
             var release = document.getElementById("release").value;
             var hourlong = document.getElementById("hourlong").value;
@@ -207,9 +207,9 @@
                     console.log("response error");
                     console.log(error);
                 }
-            });*/
+            });
 
-            var formDOM=document.getElementById("uploadForm")[0];
+           /* var formDOM=document.getElementById("uploadForm")[0];
             var name = document.getElementById("name").value;
             var star = document.getElementById("star").value;
             var release = document.getElementById("release").value;
@@ -239,7 +239,7 @@
                 error: function (jqXHR) {
                     console.log(jqXHR);
                 },
-            });
+            });*/
         })
 
 
@@ -318,15 +318,6 @@
             alert("格式不正确，请重新输入！")
         }
     }
-
-    function judgeHour() {
-        var houlong=document.getElementById("hourlong").value;
-        var pattern=/^([0-9]*)分钟$/;
-        if(!houlong.match(pattern)){
-            alert("格式不正确，请重新输入！")
-        }
-    }
-
     function judgeType() {
         var type=document.getElementById("type").value;
         var pattern=/^[\u4e00-\u9fa5]*$/;
@@ -413,10 +404,10 @@
                         <label>影片简介:</label>
                         <textarea type="text" class="btn btn-default" id="film_information"></textarea>
                     </div>
-                    <div class="inputPosition">
+                   <!-- <div class="inputPosition">
                         <label>上传图片:</label>
                         <input type="file" class="btn btn-default" id="film_image" multiple="multiple">
-                    </div>
+                    </div>-->
                 </form>
             </div>
             <div class="modal-footer" style="text-align: center">
@@ -429,3 +420,4 @@
 </div>
 </body>
 </html>
+
