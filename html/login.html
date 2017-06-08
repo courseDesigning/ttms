@@ -15,7 +15,7 @@
         sessionStorage.setItem('user', user);
         $.ajax({
             url: 'http://123.206.67.174:18000/user/login',
-            type: 'get',     // 请求类型，常用的有 GET 和 POST
+            type: 'post',     // 请求类型，常用的有 GET 和 POST
             datatype: 'jsonp',
             crossDomain: true,
             xhrFields: {

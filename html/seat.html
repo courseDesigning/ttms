@@ -140,6 +140,16 @@
                 })
             }
         }
+
+
+        var btn = document.getElementsByTagName("button");
+        for (var i = 0; i < btn.length; i++) {
+            (function (index) {
+                btn[index].onclick = function () {
+                    btn[index].style.backgroundColor = "#999";
+                }
+            }(i))
+        }
     }
 
 </script>

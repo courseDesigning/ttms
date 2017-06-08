@@ -37,3 +37,7 @@
 #legend{
     float: left;
 }
+
+.seatCol:hover{
+    background-color: #999;
+}
