@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+*{
+    font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
+}
+
+
 /*css reset start*/
 
 ul, li {
@@ -14,7 +19,6 @@ ul, li {
 /*github展示统一样式start*/
 a {
     text-decoration: none;
-    color: #fff;
 }
 
 /*css public start*/
@@ -129,19 +133,19 @@ a {
 
 /*设置背景，响应式请利用媒体查询根据断点修改路径*/
 .slider-item1 {
-    background-image: url(../images/login1.jpg);
+    background-image: url(../images/1.jpg);
 }
 .slider-item2 {
-    background-image:url(http://yanxuan.nosdn.127.net/6c20940c7b36612b0ed4d7b0a8a4aafe.jpg);
+    background-image:url(../images/5.jpg);
 }
 .slider-item3 {
-    background-image: url(../images/7.jpg);
+    background-image: url(../images/film.jpg);
 }
 .slider-item4 {
-    background-image: url(../images/7.jpg);
+    background-image: url(../images/10.jpg);
 }
 .slider-item5 {
-    background-image: url(../images/5.jpg);
+    background-image: url(../images/2.jpg);
 }
 
 /*设置图片的高度，请根据具体需要修改百分比，响应式及时修改此值*/
@@ -232,12 +236,13 @@ a {
     font-family: "AR PL UKai CN","Noto Sans CJK JP Bold";
 }
 
-a:hover{
-    color:#b4a078;
-}
 /*
 影院名称结束
 */
+
+a:hover{
+    color: #b4a078
+}
 
 /*标签页开始*/
 .tag{
